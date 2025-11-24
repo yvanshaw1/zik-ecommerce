@@ -8,7 +8,7 @@ export const PRODUTOS: Produto[] = [
     descricao: "Chip M3, 16GB RAM, 512GB SSD, Tela Liquid Retina XDR",
     preco: 15999.0,
     categoriaId: "notebooks",
-    imagem: "/images/produtos/placeholder.jpg",
+    imagem: "/images/products/notebooks/MacBookPro14M3.jpg",
     estoque: 15,
   },
   {
@@ -17,7 +17,7 @@ export const PRODUTOS: Produto[] = [
     descricao: "Intel Core i7-13700H, 32GB RAM, 1TB SSD, RTX 4060",
     preco: 12499.0,
     categoriaId: "notebooks",
-    imagem: "/images/produtos/placeholder.jpg",
+    imagem: "/images/products/notebooks/DellXPS15.jpg",
     estoque: 8,
   },
   {
@@ -26,7 +26,7 @@ export const PRODUTOS: Produto[] = [
     descricao: 'Intel Core i7-1365U, 16GB RAM, 512GB SSD, 14" WUXGA',
     preco: 9899.0,
     categoriaId: "notebooks",
-    imagem: "/images/produtos/placeholder.jpg",
+    imagem: "/images/products/notebooks/LenovoThinkPadX1Carbon.jpg",
     estoque: 12,
   },
   {
@@ -35,7 +35,7 @@ export const PRODUTOS: Produto[] = [
     descricao: "AMD Ryzen 9 7940HS, 32GB RAM, 1TB SSD, RTX 4070",
     preco: 13999.0,
     categoriaId: "notebooks",
-    imagem: "/images/produtos/placeholder.jpg",
+    imagem: "/images/products/notebooks/ASUSROGZephyrusG14.jpg",
     estoque: 6,
   },
   {
@@ -44,7 +44,7 @@ export const PRODUTOS: Produto[] = [
     descricao: "Intel Core i9-13900HX, 32GB RAM, 1TB SSD, RTX 4080",
     preco: 16499.0,
     categoriaId: "notebooks",
-    imagem: "/images/produtos/placeholder.jpg",
+    imagem: "/images/products/notebooks/AcerPredatorHelios16.jpg",
     estoque: 4,
   },
 
@@ -55,7 +55,7 @@ export const PRODUTOS: Produto[] = [
     descricao: "Intel Core i9-13900KF, 64GB RAM, RTX 4090, 2TB SSD",
     preco: 24999.0,
     categoriaId: "computadores-gamer",
-    imagem: "/images/produtos/placeholder.jpg",
+    imagem: "/images/products/pc-gamer/AlienwareAuroraR15.jpg",
     estoque: 3,
   },
   {
@@ -64,7 +64,7 @@ export const PRODUTOS: Produto[] = [
     descricao: "Intel Core i7-13700K, 32GB RAM, RTX 4070 Ti, 1TB SSD",
     preco: 14999.0,
     categoriaId: "computadores-gamer",
-    imagem: "/images/produtos/placeholder.jpg",
+    imagem: "/images/products/pc-gamer/Corsair Vengeance i7400.jpg",
     estoque: 7,
   },
   {
@@ -73,7 +73,7 @@ export const PRODUTOS: Produto[] = [
     descricao: "AMD Ryzen 9 7900X, 32GB RAM, RTX 4080, 2TB SSD",
     preco: 18999.0,
     categoriaId: "computadores-gamer",
-    imagem: "/images/produtos/placeholder.jpg",
+    imagem: "/images/products/pc-gamer/NZXT Player Three Prime.jpg",
     estoque: 5,
   },
   {
@@ -82,7 +82,7 @@ export const PRODUTOS: Produto[] = [
     descricao: "Intel Core i7-13700KF, 32GB RAM, RTX 4070, 1TB SSD",
     preco: 13499.0,
     categoriaId: "computadores-gamer",
-    imagem: "/images/produtos/placeholder.jpg",
+    imagem: "/images/products/pc-gamer/MSI Aegis RS.jpg",
     estoque: 9,
   },
   {
@@ -91,7 +91,7 @@ export const PRODUTOS: Produto[] = [
     descricao: "Intel Core i9-13900K, 64GB RAM, RTX 4090, 2TB SSD",
     preco: 26999.0,
     categoriaId: "computadores-gamer",
-    imagem: "/images/produtos/placeholder.jpg",
+    imagem: "/images/products/pc-gamer/HP OMEN 45L.jpg",
     estoque: 2,
   },
   {
@@ -100,7 +100,7 @@ export const PRODUTOS: Produto[] = [
     descricao: "Intel Core i9-13900KF, 32GB RAM, RTX 4080, 2TB SSD",
     preco: 19999.0,
     categoriaId: "computadores-gamer",
-    imagem: "/images/produtos/placeholder.jpg",
+    imagem: "/images/products/pc-gamer/Lenovo Legion Tower 7i.jpg",
     estoque: 6,
   },
 
@@ -111,7 +111,7 @@ export const PRODUTOS: Produto[] = [
     descricao: "Mouse Gamer Wireless, Sensor HERO 25K, 63g",
     preco: 899.0,
     categoriaId: "perifericos",
-    imagem: "/images/produtos/placeholder.jpg",
+    imagem: "/images/products/perifericos/Logitech G Pro X Superlight.jpg",
     estoque: 25,
   },
   {
@@ -120,7 +120,7 @@ export const PRODUTOS: Produto[] = [
     descricao: "Teclado Mecânico RGB, Switch Green, ABNT2",
     preco: 1499.0,
     categoriaId: "perifericos",
-    imagem: "/images/produtos/placeholder.jpg",
+    imagem: "/images/products/perifericos/Razer BlackWidow V4 Pro.jpg",
     estoque: 18,
   },
   {
@@ -129,7 +129,7 @@ export const PRODUTOS: Produto[] = [
     descricao: "Headset Gamer, Som Surround 7.1, Bateria 300h",
     preco: 1299.0,
     categoriaId: "perifericos",
-    imagem: "/images/produtos/placeholder.jpg",
+    imagem: "/images/products/perifericos/HyperX Cloud Alpha Wireless.jpg",
     estoque: 14,
   },
   {
@@ -138,7 +138,7 @@ export const PRODUTOS: Produto[] = [
     descricao: "Headset Premium, DAC GameDAC Gen 2, Hi-Res Audio",
     preco: 2499.0,
     categoriaId: "perifericos",
-    imagem: "/images/produtos/placeholder.jpg",
+    imagem: "/images/products/perifericos/SteelSeries Arctis Nova Pro.jpg",
     estoque: 10,
   },
   {
@@ -147,7 +147,7 @@ export const PRODUTOS: Produto[] = [
     descricao: "Teclado Mecânico, Switch OPX, Roda iCUE",
     preco: 1899.0,
     categoriaId: "perifericos",
-    imagem: "/images/produtos/placeholder.jpg",
+    imagem: "/images/products/perifericos/Corsair K100 RGB.jpg",
     estoque: 12,
   },
   {
@@ -156,7 +156,7 @@ export const PRODUTOS: Produto[] = [
     descricao: "Mouse Gamer Wireless, LIGHTFORCE, RGB LIGHTSYNC",
     preco: 749.0,
     categoriaId: "perifericos",
-    imagem: "/images/produtos/placeholder.jpg",
+    imagem: "/images/products/perifericos/Logitech G502 X Plus.jpg",
     estoque: 20,
   },
 
@@ -167,7 +167,7 @@ export const PRODUTOS: Produto[] = [
     descricao: "Placa de Vídeo 24GB GDDR6X, DLSS 3, Ray Tracing",
     preco: 12999.0,
     categoriaId: "hardware",
-    imagem: "/images/produtos/placeholder.jpg",
+    imagem: "/images/products/hardware/NVIDIA GeForce RTX 4090.jpg",
     estoque: 5,
   },
   {
@@ -176,7 +176,7 @@ export const PRODUTOS: Produto[] = [
     descricao: "Processador 16-Core, 32-Threads, 5.7GHz Boost",
     preco: 3499.0,
     categoriaId: "hardware",
-    imagem: "/images/produtos/placeholder.jpg",
+    imagem: "/images/products/hardware/AMD Ryzen 9 7950X.jpg",
     estoque: 11,
   },
   {
@@ -185,7 +185,7 @@ export const PRODUTOS: Produto[] = [
     descricao: "SSD NVMe Gen 4, 7450MB/s Leitura, PCIe 4.0",
     preco: 1299.0,
     categoriaId: "hardware",
-    imagem: "/images/produtos/placeholder.jpg",
+    imagem: "/images/products/hardware/Samsung 990 PRO 2TB.jpg",
     estoque: 22,
   },
   {
@@ -194,7 +194,7 @@ export const PRODUTOS: Produto[] = [
     descricao: "Memória RAM DDR5 6000MHz, Kit 2x32GB, CL30",
     preco: 2899.0,
     categoriaId: "hardware",
-    imagem: "/images/produtos/placeholder.jpg",
+    imagem: "/images/products/hardware/Corsair Dominator Platinum RGB 64GB.jpg",
     estoque: 15,
   },
   {
@@ -203,7 +203,7 @@ export const PRODUTOS: Produto[] = [
     descricao: "Placa-Mãe Intel Z790, DDR5, PCIe 5.0, WiFi 6E",
     preco: 3299.0,
     categoriaId: "hardware",
-    imagem: "/images/produtos/placeholder.jpg",
+    imagem: "/images/products/hardware/ASUS ROG Strix Z790-E.jpg",
     estoque: 8,
   },
   {
@@ -212,7 +212,7 @@ export const PRODUTOS: Produto[] = [
     descricao: "Fonte 1500W, 80 Plus Platinum, Modular, Digital",
     preco: 2499.0,
     categoriaId: "hardware",
-    imagem: "/images/produtos/placeholder.jpg",
+    imagem: "/images/products/hardware/Corsair HX1500i.jpg",
     estoque: 13,
   },
 ];

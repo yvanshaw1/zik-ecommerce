@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home } from "../pages/Home";
-import { Categoria } from "../pages/Categoria";
+import { Categoria } from "../pages/Category";
 
 export function AppRoutes() {
   return (

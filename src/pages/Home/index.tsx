@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Header } from "../../components/Header";
-import { CATEGORIAS } from "../../constants/categorias";
+import { CATEGORIAS } from "../../constants/categories";
 import * as S from "./styles";
 
 export function Home() {

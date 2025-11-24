@@ -1,1 +1,1 @@
-export { CarrinhoProvider, useCarrinho } from "./CarrinhoContext";
+export { CarrinhoProvider, useCarrinho } from "./CartContext";
