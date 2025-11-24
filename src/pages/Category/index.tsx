@@ -3,23 +3,23 @@ import { ProductCard } from "../../components/ProductCard";
 import { PRODUTOS } from "../../constants/products";
 import * as S from "./styles";
 
-interface CategoriaProps {
-  categoriaId: string;
+interface CategoryProps {
+  categoryId: string;
 }
 
-export function Categoria({ categoriaId }: CategoriaProps) {
-  const produtosFiltrados = PRODUTOS.filter(
-    (produto) => produto.categoriaId === categoriaId
+export function Category({ categoryId }: CategoryProps) {
+  const filteredProducts = PRODUTOS.filter(
+    (product) => product.category === categoryId
   );
 
   return (
     <>
       <Header />
       <S.Container>
-        <S.Title>Produtos</S.Title>
+        <S.Title>Products</S.Title>
         <S.ProductsGrid>
-          {produtosFiltrados.map((produto) => (
-            <ProductCard key={produto.id} product={produto} />
+          {filteredProducts.map((product) => (
+            <ProductCard key={product.id} product={product} />
           ))}
         </S.ProductsGrid>
       </S.Container>

@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home } from "../pages/Home";
-import { Categoria } from "../pages/Category";
+import { Category } from "../pages/Category";
 
 export function AppRoutes() {
   return (
@@ -9,19 +9,19 @@ export function AppRoutes() {
         <Route path="/" element={<Home />} />
         <Route
           path="/categoria/notebooks"
-          element={<Categoria categoriaId="notebooks" />}
+          element={<Category categoryId="notebooks" />}
         />
         <Route
           path="/categoria/computadores-gamer"
-          element={<Categoria categoriaId="computadores-gamer" />}
+          element={<Category categoryId="computadores-gamer" />}
         />
         <Route
           path="/categoria/perifericos"
-          element={<Categoria categoriaId="perifericos" />}
+          element={<Category categoryId="perifericos" />}
         />
         <Route
           path="/categoria/hardware"
-          element={<Categoria categoriaId="hardware" />}
+          element={<Category categoryId="hardware" />}
         />
       </Routes>
     </BrowserRouter>

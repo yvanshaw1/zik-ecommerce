@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Header } from "../../components/Header";
 import { PRODUTOS } from "../../constants/products";
-import { useCarrinho } from "../../contexts";
+import { useCarrinho } from "../../contexts/CartContext";
 import * as S from "./styles";
 
 export function Produto() {

@@ -1,20 +1,22 @@
-export interface Categoria {
+export type Product = {
   id: string;
-  nome: string;
+  name: string;
+  price: number;
+  image: string;
+  description: string;
+  category: string;
+  stock: number;
+};
+
+export type CartItem = {
+  product: Product;
+  quantity: number;
+  subtotal: number;
+};
+
+export type Category = {
+  id: string;
+  name: string;
+  image: string;
   emoji: string;
-}
-
-export interface Produto {
-  id: string;
-  nome: string;
-  descricao: string;
-  preco: number;
-  imagem: string;
-  categoriaId: string;
-  estoque: number;
-}
-
-export interface ItemCarrinho {
-  produto: Produto;
-  quantidade: number;
-}
+};

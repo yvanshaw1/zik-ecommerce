@@ -1,11 +1,12 @@
-import { CarrinhoProvider } from "./contexts";
+import { CartProvider } from "./contexts/CartProvider";
 import { AppRoutes } from "./routes";
+import "./styles/global.css";
 
 function App() {
   return (
-    <CarrinhoProvider>
+    <CartProvider>
       <AppRoutes />
-    </CarrinhoProvider>
+    </CartProvider>
   );
 }
 

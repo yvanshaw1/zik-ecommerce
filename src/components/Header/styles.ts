@@ -28,13 +28,20 @@ export const Nav = styled.nav`
 `;
 
 export const NavButton = styled.button`
-  padding: 10px 20px;
+  padding: 10px 16px;
   background: #ff0000ff;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  span {
+    font-weight: bold;
+  }
 
   &:hover {
     background: #b30000ff;
