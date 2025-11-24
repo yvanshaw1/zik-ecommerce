@@ -9,9 +9,11 @@ export type Product = {
 };
 
 export type CartItem = {
-  product: Product;
+  id: string;
+  name: string;
+  price: number;
+  image: string;
   quantity: number;
-  subtotal: number;
 };
 
 export type Category = {
