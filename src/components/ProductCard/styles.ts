@@ -37,7 +37,7 @@ export const ImageWrapper = styled.div`
   aspect-ratio: 1 / 1;
   overflow: hidden;
   border-radius: 4px;
-  background: #f5f5f5;
+  background: white;
   margin-bottom: 12px;
 `;
 
