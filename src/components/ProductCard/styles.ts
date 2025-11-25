@@ -1,10 +1,32 @@
 import styled from "styled-components";
 
-export const Card = styled.article`
+export const Card = styled.article<{ $isLowStock: boolean }>`
   background: white;
   border-radius: 8px;
   padding: 16px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  border: ${(props) => (props.$isLowStock ? "2px solid #FFA500" : "none")};
+`;
+
+export const AlertBadge = styled.div`
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #ffa500;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+`;
+
+export const AlertIcon = styled.span`
+  font-size: 18px;
+  color: white;
 `;
 
 export const ImageWrapper = styled.div`
@@ -40,6 +62,14 @@ export const Price = styled.span`
   color: #ff3838;
 `;
 
+export const LowStockWarning = styled.p`
+  font-size: 12px;
+  color: #ffa500;
+  font-weight: bold;
+  margin-top: 8px;
+  text-align: center;
+`;
+
 export const Button = styled.button`
   width: 100%;
   padding: 12px;
@@ -49,4 +79,10 @@ export const Button = styled.button`
   border-radius: 4px;
   margin-top: 12px;
   cursor: pointer;
+
+  &:disabled {
+    background: #999;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
 `;

@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
 export const Container = styled.header`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -46,4 +51,26 @@ export const NavButton = styled.button`
   &:hover {
     background: #b30000ff;
   }
+`;
+
+export const CartButton = styled(NavButton)`
+  position: relative;
+`;
+
+export const Badge = styled.span`
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #ffffff;
+  color: #ff0000ff;
+  font-size: 12px;
+  font-weight: bold;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6px;
+  border: 2px solid #ff0000ff;
 `;

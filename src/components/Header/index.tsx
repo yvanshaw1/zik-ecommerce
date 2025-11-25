@@ -6,11 +6,13 @@ export function Header() {
   const navigate = useNavigate();
   const { items } = useCart();
 
+  const totalItems = items.reduce((acc, item) => acc + item.quantity, 0);
+
   return (
     <S.Container>
       <S.Logo onClick={() => navigate("/")}>ZiK!</S.Logo>
       <S.Nav>
-        <S.NavButton onClick={() => navigate("/carrinho")}>
+        <S.CartButton onClick={() => navigate("/cart")}>
           <svg
             width="20"
             height="20"
@@ -23,9 +25,9 @@ export function Header() {
               fill="white"
             />
           </svg>
-          {items.length > 0 && <span>{items.length}</span>}
-        </S.NavButton>
-        <S.NavButton>
+          {totalItems > 0 && <S.Badge>{totalItems}</S.Badge>}
+        </S.CartButton>
+        <S.NavButton onClick={() => navigate("/auth")}>
           <svg
             width="20"
             height="20"

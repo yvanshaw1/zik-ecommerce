@@ -10,7 +10,13 @@ export function Cart() {
 
   const handleRemoveItem = (productId: string) => {
     removeFromCart(productId);
-    toast.success("Product removed from cart");
+    toast("Product removed from cart", {
+      style: {
+        background: "#FFA500",
+        color: "#fff",
+        border: "none",
+      },
+    });
   };
 
   const handleUpdateQuantity = (productId: string, quantity: number) => {
@@ -21,7 +27,13 @@ export function Cart() {
   const handleClearCart = () => {
     if (window.confirm("Do you really want to clean the cart?")) {
       clearCart();
-      toast.success("Clean cart");
+      toast("Cart cleared", {
+        style: {
+          background: "#ff0000",
+          color: "#fff",
+          border: "none",
+        },
+      });
     }
   };
 
@@ -48,7 +60,10 @@ export function Cart() {
     <S.Container>
       <S.Header>
         <h1>My Cart</h1>
-        <S.ClearButton onClick={handleClearCart}>Clean cart</S.ClearButton>
+        <S.ButtonGroup>
+          <S.HomeButton onClick={() => navigate("/")}>Home</S.HomeButton>
+          <S.ClearButton onClick={handleClearCart}>Clean cart</S.ClearButton>
+        </S.ButtonGroup>
       </S.Header>
 
       <S.Content>

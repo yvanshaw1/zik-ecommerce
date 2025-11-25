@@ -18,6 +18,25 @@ export const Header = styled.div`
   }
 `;
 
+export const ButtonGroup = styled.div`
+  display: flex;
+  gap: 10px;
+`;
+
+export const HomeButton = styled.button`
+  padding: 10px 20px;
+  background: #ff0000;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+
+  &:hover {
+    background: #cc0000;
+  }
+`;
+
 export const ClearButton = styled.button`
   padding: 10px 20px;
   background: transparent;

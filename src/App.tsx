@@ -1,12 +1,12 @@
 import { CartProvider } from "./contexts/CartProvider";
 import { AppRoutes } from "./routes";
-import { Toaster } from "sonner";
+import { Popup } from "./components/Popup";
 import "./styles/global.css";
 
 function App() {
   return (
     <CartProvider>
-      <Toaster position="top-right" richColors />
+      <Popup />
       <AppRoutes />
     </CartProvider>
   );

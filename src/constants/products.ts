@@ -27,7 +27,7 @@ export const PRODUCTS: Product[] = [
     price: 9899.0,
     category: "notebooks",
     image: "/images/products/notebooks/LenovoThinkPadX1Carbon.jpg",
-    stock: 12,
+    stock: 0,
   },
   {
     id: "nb-004",
@@ -56,7 +56,7 @@ export const PRODUCTS: Product[] = [
     price: 24999.0,
     category: "computadores-gamer",
     image: "/images/products/pc-gamer/AlienwareAuroraR15.jpg",
-    stock: 3,
+    stock: 0,
   },
   {
     id: "pc-002",
@@ -121,7 +121,7 @@ export const PRODUCTS: Product[] = [
     price: 1499.0,
     category: "perifericos",
     image: "/images/products/perifericos/Razer BlackWidow V4 Pro.jpg",
-    stock: 18,
+    stock: 0,
   },
   {
     id: "per-003",
@@ -213,6 +213,6 @@ export const PRODUCTS: Product[] = [
     price: 2499.0,
     category: "hardware",
     image: "/images/products/hardware/Corsair HX1500i.jpg",
-    stock: 13,
+    stock: 0,
   },
 ];
