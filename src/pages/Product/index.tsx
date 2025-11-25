@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Header } from "../../components/Header";
 import { PRODUCTS } from "../../constants/products";
 import { useCart } from "../../hooks/useCart";
-import type { CartItem } from "../../types";
+import { CartItem } from "../../models/CartItem";
 import * as S from "./styles";
 
 export function Product() {
@@ -42,13 +42,14 @@ export function Product() {
   };
 
   const handleAddToCart = () => {
-    const cartItem: CartItem = {
+    const cartItem = new CartItem({
       id: product.id,
       name: product.name,
       price: product.price,
       image: product.image,
-      quantity: quantity,
-    };
+      quantity,
+    });
+
     addToCart(cartItem);
     alert(`${quantity}x ${product.name} Added to cart!`);
   };
