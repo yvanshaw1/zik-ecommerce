@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import type { ReactNode } from "react";
-import { CartContext } from "./CartContext";
-import type { CartContextType } from "./CartContext";
-import type { CartItem } from "../types";
+import { CartContext, type CartContextType } from "./CartContext";
+import { CartItem } from "../models/CartItem";
 
 interface CartProviderProps {
   children: ReactNode;
@@ -10,14 +9,48 @@ interface CartProviderProps {
 
 const CART_STORAGE_KEY = "@ZiK:cart";
 
+type StoredCartItem = {
+  id: string;
+  name: string;
+  price: number;
+  image: string;
+  quantity: number;
+};
+
 export function CartProvider({ children }: CartProviderProps) {
   const [items, setItems] = useState<CartItem[]>(() => {
+    if (typeof window === "undefined") return [];
+
     const storedCart = localStorage.getItem(CART_STORAGE_KEY);
-    return storedCart ? JSON.parse(storedCart) : [];
+    if (!storedCart) return [];
+
+    try {
+      const parsed: StoredCartItem[] = JSON.parse(storedCart);
+      return parsed.map(
+        (item) =>
+          new CartItem({
+            id: item.id,
+            name: item.name,
+            price: item.price,
+            image: item.image,
+            quantity: item.quantity,
+          })
+      );
+    } catch {
+      return [];
+    }
   });
 
   useEffect(() => {
-    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
+    const serialized: StoredCartItem[] = items.map((item) => ({
+      id: item.id,
+      name: item.name,
+      price: item.price,
+      image: item.image,
+      quantity: item.quantity,
+    }));
+
+    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(serialized));
   }, [items]);
 
   const addToCart = (product: CartItem) => {
@@ -26,13 +59,11 @@ export function CartProvider({ children }: CartProviderProps) {
 
       if (existingItem) {
         return prevItems.map((item) =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
+          item.id === product.id ? item.increment(1) : item
         );
       }
 
-      return [...prevItems, { ...product, quantity: 1 }];
+      return [...prevItems, product.withQuantity(1)];
     });
   };
 
@@ -48,7 +79,7 @@ export function CartProvider({ children }: CartProviderProps) {
 
     setItems((prevItems) =>
       prevItems.map((item) =>
-        item.id === productId ? { ...item, quantity } : item
+        item.id === productId ? item.withQuantity(quantity) : item
       )
     );
   };
@@ -58,7 +89,7 @@ export function CartProvider({ children }: CartProviderProps) {
   };
 
   const getTotal = () => {
-    return items.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    return items.reduce((acc, item) => acc + item.total, 0);
   };
 
   const value: CartContextType = {

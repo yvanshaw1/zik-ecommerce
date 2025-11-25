@@ -7,6 +7,10 @@ import * as S from "./styles";
 export function Category() {
   const { id } = useParams<{ id: string }>();
 
+  if (!id) {
+    return null;
+  }
+
   const filteredProducts = PRODUCTS.filter(
     (product) => product.category === id
   );

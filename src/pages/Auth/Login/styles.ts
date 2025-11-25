@@ -52,6 +52,7 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
+  width: 100%;
   padding: 12px 16px;
   border: 1px solid #ddd;
   border-radius: 6px;
@@ -122,5 +123,27 @@ export const HomeButton = styled.button`
     background: #f5f5f5;
     border-color: #999;
     color: #333;
+  }
+`;
+
+export const PasswordWrapper = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+`;
+
+export const PasswordIconButton = styled.button`
+  position: absolute;
+  right: 12px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  svg {
+    display: block;
   }
 `;

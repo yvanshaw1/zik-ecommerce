@@ -22,7 +22,6 @@
 body {
   background-color: var(--color-background);
   color: var(--color-text);
-  padding-top: 80px;
 }
 
 button {

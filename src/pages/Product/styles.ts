@@ -4,10 +4,10 @@ import { devices } from "../../styles/breakpoints";
 export const Container = styled.main`
   max-width: 1200px;
   margin: 0 auto;
-  padding: 24px 16px;
+  padding: 96px 16px 24px;
 
   @media ${devices.tablet} {
-    padding: 48px 24px;
+    padding: 112px 24px 48px;
   }
 `;
 

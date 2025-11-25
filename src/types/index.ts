@@ -1,3 +1,7 @@
+import { Product as ProductModel } from "../models/Product";
+import { CartItem as CartItemModel } from "../models/CartItem";
+import { Category as CategoryModel } from "../models/Category";
+
 export type Product = {
   id: string;
   name: string;
@@ -22,3 +26,7 @@ export type Category = {
   image: string;
   emoji: string;
 };
+
+export type ProductLike = Product | ProductModel;
+export type CartItemLike = CartItem | CartItemModel;
+export type CategoryLike = Category | CategoryModel;
