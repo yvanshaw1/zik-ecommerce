@@ -1,15 +1,14 @@
+import { useParams } from "react-router-dom";
 import { Header } from "../../components/Header";
 import { ProductCard } from "../../components/ProductCard";
-import { PRODUTOS } from "../../constants/products";
+import { PRODUCTS } from "../../constants/products";
 import * as S from "./styles";
 
-interface CategoryProps {
-  categoryId: string;
-}
+export function Category() {
+  const { id } = useParams<{ id: string }>();
 
-export function Category({ categoryId }: CategoryProps) {
-  const filteredProducts = PRODUTOS.filter(
-    (product) => product.category === categoryId
+  const filteredProducts = PRODUCTS.filter(
+    (product) => product.category === id
   );
 
   return (

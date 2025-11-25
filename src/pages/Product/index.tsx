@@ -1,92 +1,100 @@
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Header } from "../../components/Header";
-import { PRODUTOS } from "../../constants/products";
-import { useCarrinho } from "../../contexts/CartContext";
+import { PRODUCTS } from "../../constants/products";
+import { useCart } from "../../hooks/useCart";
+import type { CartItem } from "../../types";
 import * as S from "./styles";
 
-export function Produto() {
+export function Product() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const { adicionarItem } = useCarrinho();
-  const [quantidade, setQuantidade] = useState(1);
+  const { addToCart } = useCart();
+  const [quantity, setQuantity] = useState(1);
 
-  const produto = PRODUTOS.find((p) => p.id === id);
+  const product = PRODUCTS.find((p) => p.id === id);
 
-  if (!produto) {
+  if (!product) {
     return (
       <>
         <Header />
         <S.Container>
-          <S.ErrorMessage>Produto não encontrado</S.ErrorMessage>
-          <S.BackButton onClick={() => navigate(-1)}>Voltar</S.BackButton>
+          <S.ErrorMessage>Can't find product</S.ErrorMessage>
+          <S.BackButton onClick={() => navigate(-1)}>Go back</S.BackButton>
         </S.Container>
       </>
     );
   }
 
-  const formatarPreco = (preco: number) => {
-    return preco.toLocaleString("pt-BR", {
+  const formatarPreco = (price: number) => {
+    return price.toLocaleString("pt-BR", {
       style: "currency",
       currency: "BRL",
     });
   };
 
-  const diminuirQuantidade = () => {
-    if (quantidade > 1) setQuantidade(quantidade - 1);
+  const decreaseQuantity = () => {
+    if (quantity > 1) setQuantity(quantity - 1);
   };
 
-  const aumentarQuantidade = () => {
-    if (quantidade < produto.estoque) setQuantidade(quantidade + 1);
+  const increaseQuantity = () => {
+    if (quantity < product.stock) setQuantity(quantity + 1);
   };
 
-  const handleAdicionarCarrinho = () => {
-    adicionarItem(produto, quantidade);
-    alert(`${quantidade}x ${produto.nome} adicionado ao carrinho!`);
+  const handleAddToCart = () => {
+    const cartItem: CartItem = {
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      quantity: quantity,
+    };
+    addToCart(cartItem);
+    alert(`${quantity}x ${product.name} Added to cart!`);
   };
 
   return (
     <>
       <Header />
       <S.Container>
-        <S.BackButton onClick={() => navigate(-1)}>← Voltar</S.BackButton>
+        <S.BackButton onClick={() => navigate(-1)}>← Back</S.BackButton>
 
         <S.ProductContainer>
           <S.ImageSection>
-            <S.ProductImage src={produto.imagem} alt={produto.nome} />
+            <S.ProductImage src={product.image} alt={product.name} />
           </S.ImageSection>
 
           <S.InfoSection>
-            <S.ProductName>{produto.nome}</S.ProductName>
-            <S.ProductPrice>{formatarPreco(produto.preco)}</S.ProductPrice>
+            <S.ProductName>{product.name}</S.ProductName>
+            <S.ProductPrice>{formatarPreco(product.price)}</S.ProductPrice>
 
             <S.StockInfo>
-              {produto.estoque > 0
-                ? `${produto.estoque} unidades disponíveis`
-                : "Produto esgotado"}
+              {product.stock > 0
+                ? `${product.stock} available units`
+                : "Soldout"}
             </S.StockInfo>
 
             <S.Description>
-              <S.DescriptionTitle>Descrição</S.DescriptionTitle>
-              <S.DescriptionText>{produto.descricao}</S.DescriptionText>
+              <S.DescriptionTitle>Description</S.DescriptionTitle>
+              <S.DescriptionText>{product.description}</S.DescriptionText>
             </S.Description>
 
             <S.Actions>
               <S.QuantitySelector>
-                <S.QuantityButton onClick={diminuirQuantidade}>
+                <S.QuantityButton onClick={decreaseQuantity}>
                   -
                 </S.QuantityButton>
-                <S.QuantityValue>{quantidade}</S.QuantityValue>
-                <S.QuantityButton onClick={aumentarQuantidade}>
+                <S.QuantityValue>{quantity}</S.QuantityValue>
+                <S.QuantityButton onClick={increaseQuantity}>
                   +
                 </S.QuantityButton>
               </S.QuantitySelector>
 
               <S.AddToCartButton
-                onClick={handleAdicionarCarrinho}
-                disabled={produto.estoque === 0}
+                onClick={handleAddToCart}
+                disabled={product.stock === 0}
               >
-                {produto.estoque > 0 ? "Adicionar ao Carrinho" : "Esgotado"}
+                {product.stock > 0 ? "Add to cart" : "Soldout"}
               </S.AddToCartButton>
             </S.Actions>
           </S.InfoSection>

@@ -10,7 +10,7 @@ export function Cart() {
 
   const handleRemoveItem = (productId: string) => {
     removeFromCart(productId);
-    toast.success("Produto removido do carrinho");
+    toast.success("Product removed from cart");
   };
 
   const handleUpdateQuantity = (productId: string, quantity: number) => {
@@ -19,14 +19,14 @@ export function Cart() {
   };
 
   const handleClearCart = () => {
-    if (window.confirm("Deseja realmente limpar o carrinho?")) {
+    if (window.confirm("Do you really want to clean the cart?")) {
       clearCart();
-      toast.success("Carrinho limpo");
+      toast.success("Clean cart");
     }
   };
 
   const handleCheckout = () => {
-    toast.success("Compra finalizada com sucesso!");
+    toast.success("Purchase completed successfully!");
     clearCart();
     navigate("/");
   };
@@ -35,9 +35,9 @@ export function Cart() {
     return (
       <S.Container>
         <S.EmptyCart>
-          <h2>Seu carrinho está vazio</h2>
+          <h2>Your cart is empty</h2>
           <S.BackButton onClick={() => navigate("/")}>
-            Voltar para a loja
+            Return to the store
           </S.BackButton>
         </S.EmptyCart>
       </S.Container>
@@ -47,8 +47,8 @@ export function Cart() {
   return (
     <S.Container>
       <S.Header>
-        <h1>Meu Carrinho</h1>
-        <S.ClearButton onClick={handleClearCart}>Limpar carrinho</S.ClearButton>
+        <h1>My Cart</h1>
+        <S.ClearButton onClick={handleClearCart}>Clean cart</S.ClearButton>
       </S.Header>
 
       <S.Content>
@@ -88,23 +88,21 @@ export function Cart() {
         </S.ItemsList>
 
         <S.Summary>
-          <S.SummaryTitle>Resumo do Pedido</S.SummaryTitle>
+          <S.SummaryTitle>Order Summary</S.SummaryTitle>
           <S.SummaryRow>
             <span>Subtotal:</span>
             <span>R$ {getTotal().toFixed(2)}</span>
           </S.SummaryRow>
           <S.SummaryRow>
-            <span>Frete:</span>
-            <span>Grátis</span>
+            <span>Shipping:</span>
+            <span>Free</span>
           </S.SummaryRow>
           <S.Divider />
           <S.TotalRow>
             <span>Total:</span>
             <span>R$ {getTotal().toFixed(2)}</span>
           </S.TotalRow>
-          <S.CheckoutButton onClick={handleCheckout}>
-            Finalizar Compra
-          </S.CheckoutButton>
+          <S.CheckoutButton onClick={handleCheckout}>Purchase</S.CheckoutButton>
         </S.Summary>
       </S.Content>
     </S.Container>
