@@ -7,6 +7,9 @@ export const Card = styled.article<{ $isLowStock: boolean }>`
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   position: relative;
   border: ${(props) => (props.$isLowStock ? "2px solid #FFA500" : "none")};
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 `;
 
 export const AlertBadge = styled.div`
@@ -48,18 +51,22 @@ export const ProductImage = styled.img`
 export const ProductName = styled.h3`
   font-size: 16px;
   margin-bottom: 8px;
+  min-height: 40px;
 `;
 
 export const ProductDescription = styled.p`
   font-size: 14px;
   color: #666;
   margin-bottom: 12px;
+  flex-grow: 1;
 `;
 
 export const Price = styled.span`
   font-size: 20px;
   font-weight: bold;
   color: #ff3838;
+  display: block;
+  margin-bottom: 4px;
 `;
 
 export const LowStockWarning = styled.p`
@@ -67,6 +74,7 @@ export const LowStockWarning = styled.p`
   color: #ffa500;
   font-weight: bold;
   margin-top: 8px;
+  margin-bottom: 8px;
   text-align: center;
 `;
 
@@ -77,7 +85,7 @@ export const Button = styled.button`
   color: white;
   border: none;
   border-radius: 4px;
-  margin-top: 12px;
+  margin-top: auto;
   cursor: pointer;
 
   &:disabled {
