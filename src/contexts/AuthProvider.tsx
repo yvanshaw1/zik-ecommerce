@@ -1,3 +1,4 @@
+// src/contexts/AuthProvider.tsx
 import { useState, useEffect } from "react";
 import type { ReactNode } from "react";
 import { AuthContext, type AuthContextType } from "./AuthContext";
@@ -117,11 +118,62 @@ export function AuthProvider({ children }: AuthProviderProps) {
     setUser(null);
   };
 
+  const updateUsername = (newUsername: string) => {
+    if (!user) {
+      throw new Error("NOT_AUTHENTICATED");
+    }
+
+    const loweredNew = newUsername.toLowerCase();
+
+    const usernameExists = accounts.some(
+      (acc) => acc.username.toLowerCase() === loweredNew
+    );
+
+    if (usernameExists) {
+      throw new Error("USERNAME_ALREADY_EXISTS");
+    }
+
+    const updatedAccounts = accounts.map((acc) =>
+      acc.username === user.username ? { ...acc, username: newUsername } : acc
+    );
+
+    setAccounts(updatedAccounts);
+    setUser(new User({ username: newUsername, email: user.email }));
+  };
+
+  const updatePassword = (currentPassword: string, newPassword: string) => {
+    if (!user) {
+      throw new Error("NOT_AUTHENTICATED");
+    }
+
+    const account = accounts.find(
+      (acc) => acc.username === user.username && acc.email === user.email
+    );
+
+    if (!account) {
+      throw new Error("ACCOUNT_NOT_FOUND");
+    }
+
+    if (account.password !== currentPassword) {
+      throw new Error("INVALID_CURRENT_PASSWORD");
+    }
+
+    const updatedAccounts = accounts.map((acc) =>
+      acc.username === account.username && acc.email === account.email
+        ? { ...acc, password: newPassword }
+        : acc
+    );
+
+    setAccounts(updatedAccounts);
+  };
+
   const value: AuthContextType = {
     user,
     login,
     register,
     logout,
+    updateUsername,
+    updatePassword,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

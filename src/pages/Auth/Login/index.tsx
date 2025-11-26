@@ -36,6 +36,18 @@ export function Auth() {
     return hasMinLength && hasUppercase && hasSpecialChar;
   };
 
+  const isValidEmail = (value: string) => {
+    const trimmed = value.trim();
+
+    // Regex simples:
+    // - algo antes do @
+    // - domínio com pelo menos um ponto depois do @
+    // - não permite espaços
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    return emailRegex.test(trimmed);
+  };
+
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     const trimmedIdentifier = identifier.trim();
@@ -88,6 +100,11 @@ export function Auth() {
     // SIGN UP
     if (!trimmedUsername || !trimmedEmail || !trimmedPassword) {
       toast.error("Please fill in all required fields");
+      return;
+    }
+
+    if (!isValidEmail(trimmedEmail)) {
+      toast.error("Please enter a valid email address");
       return;
     }
 

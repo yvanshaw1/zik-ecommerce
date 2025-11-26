@@ -7,6 +7,8 @@ export interface AuthContextType {
   login: (identifier: string, password: string) => void;
   register: (username: string, email: string, password: string) => void;
   logout: () => void;
+  updateUsername: (newUsername: string) => void;
+  updatePassword: (currentPassword: string, newPassword: string) => void;
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(
