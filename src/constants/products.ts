@@ -6,45 +6,45 @@ export const PRODUCTS: Product[] = [
     name: 'MacBook Pro 14" M3',
     description: "Chip M3, 16GB RAM, 512GB SSD, Tela Liquid Retina XDR",
     price: 15999.0,
-    category: "notebooks",
+    category: "laptops",
     image: "/images/products/notebooks/MacBookPro14M3.jpg",
-    stock: 750, // Entre 50-900
+    stock: 750,
   }),
   new Product({
     id: "nb-002",
     name: "Dell XPS 15",
     description: "Intel Core i7-13700H, 32GB RAM, 1TB SSD, RTX 4060",
     price: 12499.0,
-    category: "notebooks",
+    category: "laptops",
     image: "/images/products/notebooks/DellXPS15.jpg",
-    stock: 0, // Exemplo de quantidade 0
+    stock: 0,
   }),
   new Product({
     id: "nb-003",
     name: "Lenovo ThinkPad X1 Carbon",
     description: 'Intel Core i7-1365U, 16GB RAM, 512GB SSD, 14" WUXGA',
     price: 9899.0,
-    category: "notebooks",
+    category: "laptops",
     image: "/images/products/notebooks/LenovoThinkPadX1Carbon.jpg",
-    stock: 3, // Exemplo entre 1 e 5
+    stock: 3,
   }),
   new Product({
     id: "nb-004",
     name: "ASUS ROG Zephyrus G14",
     description: "AMD Ryzen 9 7940HS, 32GB RAM, 1TB SSD, RTX 4070",
     price: 13999.0,
-    category: "notebooks",
+    category: "laptops",
     image: "/images/products/notebooks/ASUSROGZephyrusG14.jpg",
-    stock: 1200, // Exemplo de mais de 1000
+    stock: 1200,
   }),
   new Product({
     id: "nb-005",
     name: "Acer Predator Helios 16",
     description: "Intel Core i9-13900HX, 32GB RAM, 1TB SSD, RTX 4080",
     price: 16499.0,
-    category: "notebooks",
+    category: "laptops",
     image: "/images/products/notebooks/AcerPredatorHelios16.jpg",
-    stock: 150, // Entre 50-900
+    stock: 150,
   }),
   new Product({
     id: "nb-006",
@@ -52,9 +52,9 @@ export const PRODUCTS: Product[] = [
     description:
       "Intel Core Ultra 9 185H, 32GB DDR5 RAM, 2TB SSD, NVIDIA GeForce RTX 4070",
     price: 15999.0,
-    category: "notebooks",
+    category: "laptops",
     image: "/images/products/notebooks/DellAlienware16Aurora.jpg",
-    stock: 450, // Entre 50-900
+    stock: 450,
   }),
 
   new Product({
@@ -62,54 +62,54 @@ export const PRODUCTS: Product[] = [
     name: "Alienware Aurora R15",
     description: "Intel Core i9-13900KF, 64GB RAM, RTX 4090, 2TB SSD",
     price: 24999.0,
-    category: "computadores-gamer",
+    category: "gaming-pcs",
     image: "/images/products/pc-gamer/AlienwareAuroraR15.jpg",
-    stock: 0, // Exemplo de quantidade 0
+    stock: 0,
   }),
   new Product({
     id: "pc-002",
     name: "Corsair Vengeance i7400",
     description: "Intel Core i7-13700K, 32GB RAM, RTX 4070 Ti, 1TB SSD",
     price: 14999.0,
-    category: "computadores-gamer",
+    category: "gaming-pcs",
     image: "/images/products/pc-gamer/Corsair Vengeance i7400.jpg",
-    stock: 4, // Exemplo entre 1 e 5
+    stock: 4,
   }),
   new Product({
     id: "pc-003",
     name: "NZXT Player Three Prime",
     description: "AMD Ryzen 9 7900X, 32GB RAM, RTX 4080, 2TB SSD",
     price: 18999.0,
-    category: "computadores-gamer",
+    category: "gaming-pcs",
     image: "/images/products/pc-gamer/NZXT Player Three Prime.jpg",
-    stock: 1500, // Exemplo de mais de 1000
+    stock: 1500,
   }),
   new Product({
     id: "pc-004",
     name: "MSI Aegis RS",
     description: "Intel Core i7-13700KF, 32GB RAM, RTX 4070, 1TB SSD",
     price: 13499.0,
-    category: "computadores-gamer",
+    category: "gaming-pcs",
     image: "/images/products/pc-gamer/MSI Aegis RS.jpg",
-    stock: 600, // Entre 50-900
+    stock: 600,
   }),
   new Product({
     id: "pc-005",
     name: "HP OMEN 45L",
     description: "Intel Core i9-13900K, 64GB RAM, RTX 4090, 2TB SSD",
     price: 26999.0,
-    category: "computadores-gamer",
+    category: "gaming-pcs",
     image: "/images/products/pc-gamer/HP OMEN 45L.jpg",
-    stock: 50, // Entre 50-900
+    stock: 50,
   }),
   new Product({
     id: "pc-006",
     name: "Lenovo Legion Tower 7i",
     description: "Intel Core i9-13900KF, 32GB RAM, RTX 4080, 2TB SSD",
     price: 19999.0,
-    category: "computadores-gamer",
+    category: "gaming-pcs",
     image: "/images/products/pc-gamer/Lenovo Legion Tower 7i.jpg",
-    stock: 900, // Entre 50-900
+    stock: 900,
   }),
 
   new Product({
@@ -117,54 +117,54 @@ export const PRODUCTS: Product[] = [
     name: "Logitech G Pro X Superlight",
     description: "Mouse Gamer Wireless, Sensor HERO 25K, 63g",
     price: 899.0,
-    category: "perifericos",
+    category: "peripherals",
     image: "/images/products/perifericos/Logitech G Pro X Superlight.jpg",
-    stock: 1500, // Exemplo de mais de 1000
+    stock: 1500,
   }),
   new Product({
     id: "per-002",
     name: "Razer BlackWidow V4 Pro",
     description: "Teclado Mecânico RGB, Switch Green, ABNT2",
     price: 1499.0,
-    category: "perifericos",
+    category: "peripherals",
     image: "/images/products/perifericos/Razer BlackWidow V4 Pro.jpg",
-    stock: 0, // Exemplo de quantidade 0
+    stock: 0,
   }),
   new Product({
     id: "per-003",
     name: "HyperX Cloud Alpha Wireless",
     description: "Headset Gamer, Som Surround 7.1, Bateria 300h",
     price: 1299.0,
-    category: "perifericos",
+    category: "peripherals",
     image: "/images/products/perifericos/HyperX Cloud Alpha Wireless.jpg",
-    stock: 2, // Exemplo entre 1 e 5
+    stock: 2,
   }),
   new Product({
     id: "per-004",
     name: "SteelSeries Arctis Nova Pro",
     description: "Headset Premium, DAC GameDAC Gen 2, Hi-Res Audio",
     price: 2499.0,
-    category: "perifericos",
+    category: "peripherals",
     image: "/images/products/perifericos/SteelSeries Arctis Nova Pro.jpg",
-    stock: 500, // Entre 50-900
+    stock: 500,
   }),
   new Product({
     id: "per-005",
     name: "Corsair K100 RGB",
     description: "Teclado Mecânico, Switch OPX, Roda iCUE",
     price: 1899.0,
-    category: "perifericos",
+    category: "peripherals",
     image: "/images/products/perifericos/Corsair K100 RGB.jpg",
-    stock: 890, // Entre 50-900
+    stock: 890,
   }),
   new Product({
     id: "per-006",
     name: "Logitech G502 X Plus",
     description: "Mouse Gamer Wireless, LIGHTFORCE, RGB LIGHTSYNC",
     price: 749.0,
-    category: "perifericos",
+    category: "peripherals",
     image: "/images/products/perifericos/Logitech G502 X Plus.jpg",
-    stock: 720, // Entre 50-900
+    stock: 720,
   }),
 
   new Product({
@@ -174,7 +174,7 @@ export const PRODUCTS: Product[] = [
     price: 12999.0,
     category: "hardware",
     image: "/images/products/hardware/NVIDIA GeForce RTX 4090.jpg",
-    stock: 350, // Entre 50-900
+    stock: 350,
   }),
   new Product({
     id: "hw-002",
@@ -183,7 +183,7 @@ export const PRODUCTS: Product[] = [
     price: 3499.0,
     category: "hardware",
     image: "/images/products/hardware/AMD Ryzen 9 7950X.jpg",
-    stock: 1200, // Exemplo de mais de 1000
+    stock: 1200,
   }),
   new Product({
     id: "hw-003",
@@ -192,7 +192,7 @@ export const PRODUCTS: Product[] = [
     price: 1299.0,
     category: "hardware",
     image: "/images/products/hardware/Samsung 990 PRO 2TB.jpg",
-    stock: 4, // Exemplo entre 1 e 5
+    stock: 4,
   }),
   new Product({
     id: "hw-004",
@@ -201,7 +201,7 @@ export const PRODUCTS: Product[] = [
     price: 2899.0,
     category: "hardware",
     image: "/images/products/hardware/Corsair Dominator Platinum RGB 64GB.jpg",
-    stock: 600, // Entre 50-900
+    stock: 600,
   }),
   new Product({
     id: "hw-005",
@@ -210,7 +210,7 @@ export const PRODUCTS: Product[] = [
     price: 3299.0,
     category: "hardware",
     image: "/images/products/hardware/ASUS ROG Strix Z790-E.jpg",
-    stock: 80, // Entre 50-900
+    stock: 80,
   }),
   new Product({
     id: "hw-006",
@@ -219,6 +219,6 @@ export const PRODUCTS: Product[] = [
     price: 2499.0,
     category: "hardware",
     image: "/images/products/hardware/Corsair HX1500i.jpg",
-    stock: 0, // Exemplo de quantidade 0
+    stock: 0,
   }),
 ];
