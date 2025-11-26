@@ -4,7 +4,7 @@ import { devices } from "../../styles/breakpoints";
 export const Container = styled.main`
   max-width: 1200px;
   margin: 0 auto;
-  padding: 96px 16px 24px; /* 96px no topo */
+  padding: 96px 16px 24px; /* 96px no topo para o header fixo */
 
   @media ${devices.tablet} {
     padding: 112px 24px 48px;
@@ -86,7 +86,7 @@ export const CarouselTitle = styled.h2`
   font-weight: 700;
   color: #2d3436;
   margin-bottom: 12px;
-  text-align: center; /* centraliza o texto */
+  text-align: center;
 
   @media ${devices.tablet} {
     font-size: 24px;

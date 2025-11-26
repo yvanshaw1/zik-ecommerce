@@ -3,14 +3,16 @@ import { useParams, useLocation } from "react-router-dom";
 import { Header } from "../../components/Header";
 import { ProductCard } from "../../components/ProductCard";
 import { Product } from "../../models/Product";
-import { useProducts } from "../../hooks/useProducts"; // <-- NOVO
+import { useProducts } from "../../hooks/useProducts";
 import * as S from "./styles";
 
 export function Category() {
   const { id } = useParams<{ id: string }>();
   const location = useLocation();
-  const { products } = useProducts(); // <-- produtos vivos
+  const { products } = useProducts();
 
+  // Usado quando veio do carrossel de destaques (Home)
+  // para rolar até um produto específico.
   const highlightProductId = (
     location.state as { highlightProductId?: string } | null
   )?.highlightProductId;
@@ -19,6 +21,8 @@ export function Category() {
     return null;
   }
 
+  // Filtragem por categoria especial ("low-stock", "promotions")
+  // ou por categoria normal (laptops, gaming-pcs, etc.).
   const filteredProducts =
     id === "low-stock"
       ? products.filter((product) => product.stock > 0 && product.stock <= 10)
@@ -28,6 +32,7 @@ export function Category() {
         )
       : products.filter((product) => product.category === id);
 
+  // Se veio com highlightProductId, faz scroll suave até esse card.
   useEffect(() => {
     if (!highlightProductId) return;
 

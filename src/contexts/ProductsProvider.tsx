@@ -21,6 +21,9 @@ type StoredProduct = {
 };
 
 export function ProductsProvider({ children }: ProductsProviderProps) {
+  // Lista de produtos com estoque, carregada de:
+  // - localStorage (se existir), ou
+  // - seed PRODUCTS (mock inicial).
   const [products, setProducts] = useState<Product[]>(() => {
     if (typeof window === "undefined") return PRODUCTS;
 
@@ -48,6 +51,7 @@ export function ProductsProvider({ children }: ProductsProviderProps) {
     }
   });
 
+  // Persiste qualquer alteração em produtos (principalmente estoque) no localStorage.
   useEffect(() => {
     if (typeof window === "undefined") return;
 
@@ -69,6 +73,8 @@ export function ProductsProvider({ children }: ProductsProviderProps) {
     [products]
   );
 
+  // Reserva `quantity` unidades do produto, se houver estoque suficiente.
+  // Usado pelo CartProvider para garantir consistência de estoque.
   const reserveStock = useCallback(
     (productId: string, quantity: number): boolean => {
       if (quantity <= 0) return true;
@@ -88,6 +94,7 @@ export function ProductsProvider({ children }: ProductsProviderProps) {
     [products]
   );
 
+  // Devolve `quantity` unidades ao estoque do produto.
   const releaseStock = useCallback(
     (productId: string, quantity: number) => {
       if (quantity <= 0) return;

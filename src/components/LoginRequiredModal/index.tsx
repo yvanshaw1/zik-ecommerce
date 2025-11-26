@@ -7,6 +7,8 @@ type LoginRequiredModalProps = {
   onClose: () => void;
 };
 
+// Modal simples usado quando o usuário tenta comprar sem estar logado.
+// Escurece o fundo e oferece navegação para a tela de login.
 export function LoginRequiredModal({
   isOpen,
   onClose,

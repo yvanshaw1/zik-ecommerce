@@ -25,6 +25,7 @@ export function Auth() {
     reason?: string;
   } | null;
 
+  // Permite tratar o caso de vir do fluxo de checkout do carrinho.
   const locationState = (location.state as AuthLocationState) || null;
 
   const isStrongPassword = (pwd: string) => {
@@ -38,13 +39,8 @@ export function Auth() {
 
   const isValidEmail = (value: string) => {
     const trimmed = value.trim();
-
-    // Regex simples:
-    // - algo antes do @
-    // - domínio com pelo menos um ponto depois do @
-    // - não permite espaços
+    // Regex simples para validar formato básico de email.
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
     return emailRegex.test(trimmed);
   };
 
@@ -67,7 +63,7 @@ export function Auth() {
         login(trimmedIdentifier, trimmedPassword);
         toast.success("Logged in successfully!");
 
-        // If user came from cart checkout flow, send back to cart
+        // Se veio do carrinho, volta para o carrinho.
         if (
           locationState?.from === "/cart" &&
           locationState?.reason === "checkout"
@@ -76,7 +72,7 @@ export function Auth() {
           return;
         }
 
-        // Default redirect
+        // Redirecionamento padrão.
         navigate("/", { replace: true });
       } catch (error) {
         const err = error as Error;

@@ -1,5 +1,8 @@
 import { Product } from "../models/Product";
 
+// Seed inicial de produtos da loja.
+// Criamos instâncias de Product diretamente para reutilizar
+// getters como hasPromotion, discountedPrice e isLowStock.
 export const PRODUCTS: Product[] = [
   new Product({
     id: "nb-001",
@@ -44,7 +47,7 @@ export const PRODUCTS: Product[] = [
     price: 16499.0,
     category: "laptops",
     image: "/images/products/notebooks/AcerPredatorHelios16.jpg",
-    stock: 150,
+    stock: 15,
   }),
   new Product({
     id: "nb-006",
@@ -100,7 +103,7 @@ export const PRODUCTS: Product[] = [
     price: 26999.0,
     category: "gaming-pcs",
     image: "/images/products/pc-gamer/HP OMEN 45L.jpg",
-    stock: 50,
+    stock: 13,
   }),
   new Product({
     id: "pc-006",
@@ -164,7 +167,7 @@ export const PRODUCTS: Product[] = [
     price: 749.0,
     category: "peripherals",
     image: "/images/products/perifericos/Logitech G502 X Plus.jpg",
-    stock: 720,
+    stock: 14,
   }),
 
   new Product({
@@ -210,7 +213,7 @@ export const PRODUCTS: Product[] = [
     price: 3299.0,
     category: "hardware",
     image: "/images/products/hardware/ASUS ROG Strix Z790-E.jpg",
-    stock: 80,
+    stock: 12,
   }),
   new Product({
     id: "hw-006",

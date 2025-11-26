@@ -1,6 +1,7 @@
 import { createContext } from "react";
 import { User } from "../models/User";
 
+// API pública de autenticação exposta via Context.
 export interface AuthContextType {
   user: User | null;
   // identifier pode ser username OU email

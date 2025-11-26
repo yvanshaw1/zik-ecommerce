@@ -1,3 +1,5 @@
+// Representa um item dentro do carrinho.
+// Mantém o estado imutável: qualquer mudança gera uma nova instância.
 export class CartItem {
   readonly id: string;
   readonly name: string;
@@ -16,13 +18,16 @@ export class CartItem {
     this.name = params.name;
     this.price = params.price;
     this.image = params.image;
+    // Garante que a quantidade nunca fica negativa.
     this.quantity = params.quantity < 0 ? 0 : params.quantity;
   }
 
+  // Valor total deste item (preço * quantidade).
   get total(): number {
     return this.price * this.quantity;
   }
 
+  // Retorna um novo CartItem com a quantidade alterada.
   withQuantity(quantity: number): CartItem {
     return new CartItem({
       id: this.id,

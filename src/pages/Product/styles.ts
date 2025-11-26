@@ -58,6 +58,7 @@ export const ProductImage = styled.img`
     max-height: 500px;
   }
 `;
+
 export const InfoSection = styled.div`
   flex: 1;
 `;
@@ -65,7 +66,7 @@ export const InfoSection = styled.div`
 export const ProductName = styled.h1`
   font-size: 24px;
   color: #2d3436;
-  margin-bottom: 16px;
+  margin-bottom: 16;
 
   @media ${devices.tablet} {
     font-size: 32px;
@@ -116,6 +117,7 @@ export const DescriptionText = styled.p`
     font-size: 16px;
   }
 `;
+
 export const Actions = styled.div`
   display: flex;
   flex-direction: column;
@@ -138,7 +140,7 @@ export const QuantitySelector = styled.div`
 `;
 
 export const QuantityButton = styled.button`
-  background: none;
+  background none;
   border: none;
   font-size: 20px;
   color: #2d3436;

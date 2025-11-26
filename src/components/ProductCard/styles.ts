@@ -45,6 +45,7 @@ export const AlertIcon = styled.span`
   color: white;
 `;
 
+// Mantém a imagem centralizada e responsiva com aspect-ratio fixo.
 export const ImageWrapper = styled.div`
   width: 100%;
   aspect-ratio: 1 / 1;

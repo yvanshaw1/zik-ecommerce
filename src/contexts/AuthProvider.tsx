@@ -1,4 +1,3 @@
-// src/contexts/AuthProvider.tsx
 import { useState, useEffect } from "react";
 import type { ReactNode } from "react";
 import { AuthContext, type AuthContextType } from "./AuthContext";
@@ -18,6 +17,8 @@ interface StoredAccount {
 }
 
 export function AuthProvider({ children }: AuthProviderProps) {
+  // Usuário autenticado atualmente.
+  // Carrega do localStorage apenas os dados públicos (sem senha).
   const [user, setUser] = useState<User | null>(() => {
     if (typeof window === "undefined") return null;
 
@@ -32,6 +33,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
     }
   });
 
+  // "Banco" de contas armazenado no localStorage (inclui senha em texto puro).
+  // Isso é aceitável para demo/local, mas não para produção real.
   const [accounts, setAccounts] = useState<StoredAccount[]>(() => {
     if (typeof window === "undefined") return [];
     const stored = localStorage.getItem(ACCOUNTS_STORAGE_KEY);
@@ -43,7 +46,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     }
   });
 
-  // Sync logged user with localStorage (without password)
+  // Sincroniza usuário logado com localStorage (sem senha).
   useEffect(() => {
     if (!user) {
       localStorage.removeItem(AUTH_STORAGE_KEY);
@@ -58,11 +61,13 @@ export function AuthProvider({ children }: AuthProviderProps) {
     localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(serialized));
   }, [user]);
 
-  // Sync accounts list with localStorage
+  // Sincroniza lista de contas com localStorage.
   useEffect(() => {
     localStorage.setItem(ACCOUNTS_STORAGE_KEY, JSON.stringify(accounts));
   }, [accounts]);
 
+  // Login por username OU email + senha.
+  // Lança erros específicos para a UI tratar via toast.
   const login = (identifier: string, password: string) => {
     const lowered = identifier.toLowerCase();
 
@@ -88,6 +93,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     setUser(loggedUser);
   };
 
+  // Cadastro de nova conta + login automático.
   const register = (username: string, email: string, password: string) => {
     const loweredUsername = username.toLowerCase();
     const loweredEmail = email.toLowerCase();
@@ -111,13 +117,16 @@ export function AuthProvider({ children }: AuthProviderProps) {
     setAccounts(updatedAccounts);
 
     const newUser = new User({ username, email });
-    setUser(newUser); // auto login after sign up
+    setUser(newUser); // auto login após cadastro
   };
 
   const logout = () => {
     setUser(null);
   };
 
+  // Atualiza o username em todas as referências:
+  // - valida se não existe outro igual
+  // - atualiza accounts e o user atual
   const updateUsername = (newUsername: string) => {
     if (!user) {
       throw new Error("NOT_AUTHENTICATED");
@@ -141,6 +150,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
     setUser(new User({ username: newUsername, email: user.email }));
   };
 
+  // Troca a senha da conta atual:
+  // - garante que o usuário está autenticado
+  // - confere a senha atual
   const updatePassword = (currentPassword: string, newPassword: string) => {
     if (!user) {
       throw new Error("NOT_AUTHENTICATED");

@@ -9,10 +9,13 @@ interface ProductCardProps {
   product: ProductLike;
 }
 
+// Card de produto genérico usado em listas (Home, categorias, etc.).
 export function ProductCard({ product }: ProductCardProps) {
   const { addToCart } = useCart();
   const isOutOfStock = product.stock === 0;
 
+  // Quando "product" é uma instância de Product, uso a regra do modelo
+  // (isLowStock); senão, cai em um fallback simples baseado no número.
   const isLowStock =
     product instanceof Product
       ? product.isLowStock
@@ -68,11 +71,10 @@ export function ProductCard({ product }: ProductCardProps) {
       {hasPromotion ? (
         <S.PriceRow>
           <S.DiscountedPrice>
-            R${" "}
-            {finalPrice.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+            R {finalPrice.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
           </S.DiscountedPrice>
           <S.OriginalPrice>
-            R${" "}
+            R{" "}
             {product.price.toLocaleString("pt-BR", {
               minimumFractionDigits: 2,
             })}
@@ -80,7 +82,7 @@ export function ProductCard({ product }: ProductCardProps) {
         </S.PriceRow>
       ) : (
         <S.Price>
-          R${" "}
+          R{" "}
           {product.price.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
         </S.Price>
       )}

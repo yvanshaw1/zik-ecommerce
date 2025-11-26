@@ -4,13 +4,18 @@ import { toast } from "sonner";
 import { useCart } from "../../hooks/useCart";
 import { useAuth } from "../../hooks/useAuth";
 import { useProducts } from "../../hooks/useProducts";
+import { usePayment } from "../../hooks/usePayment";
+import type { PaymentMethod } from "../../models/PaymentMethod";
 import { LoginRequiredModal } from "../../components/LoginRequiredModal";
 import * as S from "./styles";
 
+// Tela de carrinho: integra carrinho, estoque, autenticação e pagamento.
 export function Cart() {
   const navigate = useNavigate();
   const { user } = useAuth();
   const { products } = useProducts();
+  const { methods, selectedMethodId, selectMethod, getFinalTotal } =
+    usePayment();
 
   const { items, removeFromCart, updateQuantity, clearCart, getTotal } =
     useCart();
@@ -46,22 +51,38 @@ export function Cart() {
     }
   };
 
+  // Checkout:
+  // - exige usuário logado
+  // - exige método de pagamento selecionado
+  // - aplica regra do método de pagamento no total
   const handleCheckout = () => {
     if (!user) {
       setIsLoginModalOpen(true);
       return;
     }
 
-    toast.success("Purchase completed successfully!");
+    if (!selectedMethodId) {
+      toast.error("Please select a payment method before purchasing.");
+      return;
+    }
+
+    const baseTotal = getTotal();
+    const finalTotal = getFinalTotal(baseTotal);
+
+    toast.success(
+      `Purchase completed successfully! Paid R$ ${finalTotal.toFixed(2)}.`
+    );
     clearCart();
     navigate("/");
   };
 
+  // Consulta o estoque atual do produto para travar botões +/−.
   const getProductStock = (productId: string) => {
     const product = products.find((p) => p.id === productId);
     return product ? product.stock : 0;
   };
 
+  // Estado de carrinho vazio.
   if (items.length === 0) {
     return (
       <S.Container>
@@ -74,6 +95,9 @@ export function Cart() {
       </S.Container>
     );
   }
+
+  const baseTotal = getTotal();
+  const finalTotal = selectedMethodId ? getFinalTotal(baseTotal) : baseTotal;
 
   return (
     <>
@@ -139,20 +163,49 @@ export function Cart() {
 
           <S.Summary>
             <S.SummaryTitle>Order Summary</S.SummaryTitle>
+
             <S.SummaryRow>
               <span>Subtotal:</span>
-              <span>R$ {getTotal().toFixed(2)}</span>
+              <span>R$ {baseTotal.toFixed(2)}</span>
             </S.SummaryRow>
+
             <S.SummaryRow>
               <span>Shipping:</span>
               <span></span>
             </S.SummaryRow>
+
             <S.Divider />
+
+            {/* Seleção do método de pagamento com pré-visualização do total */}
+            <S.PaymentMethods>
+              <S.PaymentMethodsTitle>Payment method</S.PaymentMethodsTitle>
+
+              <S.PaymentMethodsList>
+                {methods.map((method: PaymentMethod) => (
+                  <S.PaymentMethodButton
+                    key={method.id}
+                    selected={selectedMethodId === method.id}
+                    onClick={() => selectMethod(method.id)}
+                  >
+                    <span>{method.name}</span>
+                    {method.description && <small>{method.description}</small>}
+                    <small>
+                      Total: R$ {method.calculateTotal(baseTotal).toFixed(2)}
+                    </small>
+                  </S.PaymentMethodButton>
+                ))}
+              </S.PaymentMethodsList>
+            </S.PaymentMethods>
+
             <S.TotalRow>
               <span>Total:</span>
-              <span>R$ {getTotal().toFixed(2)}</span>
+              <span>R$ {finalTotal.toFixed(2)}</span>
             </S.TotalRow>
-            <S.CheckoutButton onClick={handleCheckout}>
+
+            <S.CheckoutButton
+              onClick={handleCheckout}
+              disabled={!selectedMethodId}
+            >
               Purchase
             </S.CheckoutButton>
           </S.Summary>

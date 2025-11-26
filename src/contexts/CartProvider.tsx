@@ -78,13 +78,12 @@ export function CartProvider({ children }: CartProviderProps) {
   };
 
   const removeFromCart = (productId: string) => {
-    setItems((prevItems) => {
-      const item = prevItems.find((i) => i.id === productId);
-      if (item) {
-        releaseStock(productId, item.quantity);
-      }
-      return prevItems.filter((i) => i.id !== productId);
-    });
+    const currentItem = items.find((i) => i.id === productId);
+    if (currentItem) {
+      releaseStock(productId, currentItem.quantity);
+    }
+
+    setItems((prevItems) => prevItems.filter((i) => i.id !== productId));
   };
 
   const updateQuantity = (productId: string, quantity: number) => {
@@ -93,36 +92,32 @@ export function CartProvider({ children }: CartProviderProps) {
       return;
     }
 
-    setItems((prevItems) => {
-      const item = prevItems.find((i) => i.id === productId);
-      if (!item) return prevItems;
+    const currentItem = items.find((i) => i.id === productId);
+    if (!currentItem) return;
 
-      const diff = quantity - item.quantity;
+    const diff = quantity - currentItem.quantity;
+    if (diff === 0) return;
 
-      if (diff === 0) return prevItems;
-
-      if (diff > 0) {
-        const ok = reserveStock(productId, diff);
-        if (!ok) {
-          return prevItems;
-        }
-      } else {
-        releaseStock(productId, Math.abs(diff));
+    if (diff > 0) {
+      const ok = reserveStock(productId, diff);
+      if (!ok) {
+        return;
       }
+    } else {
+      releaseStock(productId, Math.abs(diff));
+    }
 
-      return prevItems.map((i) =>
-        i.id === productId ? i.withQuantity(quantity) : i
-      );
-    });
+    setItems((prevItems) =>
+      prevItems.map((i) => (i.id === productId ? i.withQuantity(quantity) : i))
+    );
   };
 
   const clearCart = () => {
-    setItems((prevItems) => {
-      prevItems.forEach((item) => {
-        releaseStock(item.id, item.quantity);
-      });
-      return [];
+    items.forEach((item) => {
+      releaseStock(item.id, item.quantity);
     });
+
+    setItems([]);
   };
 
   const getTotal = () => {

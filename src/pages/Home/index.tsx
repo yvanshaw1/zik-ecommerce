@@ -13,7 +13,7 @@ export function Home() {
     navigate(`/category/${categoryId}`);
   };
 
-  // Produtos destaque: em promoção OU com poucas unidades
+  // Produtos destaque: em promoção ou com poucas unidades.
   const highlightProducts = useMemo(
     () =>
       products.filter(
@@ -27,7 +27,7 @@ export function Home() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const carouselRef = useRef<HTMLDivElement | null>(null);
 
-  // Auto-slide
+  // Auto-slide do carrossel.
   useEffect(() => {
     if (highlightProducts.length === 0) return;
 
@@ -40,7 +40,7 @@ export function Home() {
     return () => clearInterval(intervalId);
   }, [highlightProducts.length]);
 
-  // Centraliza item ativo
+  // Centraliza o item ativo no container do carrossel.
   useEffect(() => {
     const container = carouselRef.current;
     if (!container) return;
@@ -64,6 +64,8 @@ export function Home() {
     });
   }, [currentIndex]);
 
+  // Ao clicar no destaque, vai para a categoria do produto
+  // e passa o id via state para possível destaque lá na lista.
   const handleHighlightClick = (product: Product) => {
     navigate(`/category/${product.category}`, {
       state: { highlightProductId: product.id },
@@ -72,7 +74,7 @@ export function Home() {
 
   return (
     <S.Container>
-      {/* CARROSSEL DE DESTAQUES */}
+      {/* Carrossel de destaques */}
       {highlightProducts.length > 0 && (
         <S.CarouselWrapper>
           <S.CarouselTitle>Highlights</S.CarouselTitle>
@@ -112,13 +114,13 @@ export function Home() {
                     {product.hasPromotion ? (
                       <S.HighlightPriceRow>
                         <S.HighlightDiscountedPrice>
-                          R{"$ "}
+                          R{" "}
                           {product.discountedPrice.toLocaleString("pt-BR", {
                             minimumFractionDigits: 2,
                           })}
                         </S.HighlightDiscountedPrice>
                         <S.HighlightOriginalPrice>
-                          R{"$ "}
+                          R{" "}
                           {product.price.toLocaleString("pt-BR", {
                             minimumFractionDigits: 2,
                           })}
@@ -126,7 +128,7 @@ export function Home() {
                       </S.HighlightPriceRow>
                     ) : (
                       <S.HighlightPrice>
-                        R{"$ "}
+                        R{" "}
                         {product.price.toLocaleString("pt-BR", {
                           minimumFractionDigits: 2,
                         })}
@@ -156,7 +158,7 @@ export function Home() {
         </S.CarouselWrapper>
       )}
 
-      {/* CATEGORIAS */}
+      {/* Grid de categorias */}
       <S.Title>Choose a category</S.Title>
       <S.CategoriesGrid>
         {CATEGORIES.map((cat) => (

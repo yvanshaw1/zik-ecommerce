@@ -1,5 +1,7 @@
 import { Category } from "../models/Category";
 
+// Categorias exibidas na Home.
+// Algumas são categorias reais, outras são "visões" (low-stock, promotions).
 export const CATEGORIES: Category[] = [
   new Category({
     id: "laptops",

@@ -17,6 +17,7 @@ export function Account() {
   const [isSavingUsername, setIsSavingUsername] = useState(false);
   const [isSavingPassword, setIsSavingPassword] = useState(false);
 
+  // Se não estiver logado, apenas exibe mensagem informativa.
   if (!user) {
     return (
       <S.Container>

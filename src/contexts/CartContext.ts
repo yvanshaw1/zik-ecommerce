@@ -1,6 +1,8 @@
 import { createContext } from "react";
 import { CartItem } from "../models/CartItem";
 
+// API pública do carrinho exposta via Context.
+// A implementação concreta fica no CartProvider.
 export interface CartContextType {
   items: CartItem[];
   addToCart: (product: CartItem) => boolean | void;

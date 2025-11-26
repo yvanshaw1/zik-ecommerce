@@ -235,6 +235,12 @@ export const CheckoutButton = styled.button`
   &:hover {
     background: #cc0000;
   }
+
+  &:disabled {
+    background: #ccc;
+    color: #666;
+    cursor: not-allowed;
+  }
 `;
 
 export const EmptyCart = styled.div`
@@ -262,5 +268,45 @@ export const BackButton = styled.button`
 
   &:hover {
     background: #cc0000;
+  }
+`;
+
+export const PaymentMethods = styled.div`
+  margin-top: 20px;
+`;
+
+export const PaymentMethodsTitle = styled.h3`
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #333;
+`;
+
+export const PaymentMethodsList = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+`;
+
+export const PaymentMethodButton = styled.button<{ selected: boolean }>`
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 4px;
+  border: 1px solid ${({ selected }) => (selected ? "#ff0000" : "#ddd")};
+  background: ${({ selected }) => (selected ? "#ffe5e5" : "#fff")};
+  cursor: pointer;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  span {
+    font-size: 14px;
+    color: #333;
+  }
+
+  small {
+    font-size: 12px;
+    color: #777;
   }
 `;

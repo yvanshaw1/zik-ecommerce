@@ -1,3 +1,5 @@
+// Modelo de domínio para produto.
+// Encapsula regras de estoque e promoção (desconto baseado no nível de estoque).
 export class Product {
   readonly id: string;
   readonly name: string;
@@ -37,6 +39,10 @@ export class Product {
     return this._stock > 0 && this._stock < 5;
   }
 
+  // Regra de desconto: quanto maior o estoque, maior o desconto.
+  // - < 500 unidades: sem desconto
+  // - >= 1000 unidades: 20%
+  // - entre 500 e 1000: desconto entre 10% e 20%, calculado por interpolação
   get discountPercent(): number {
     const stock = this._stock;
 
@@ -63,6 +69,7 @@ export class Product {
     return this.price * (1 - this.discountPercent / 100);
   }
 
+  // Retorna uma nova instância com estoque atualizado (imutabilidade).
   withUpdatedStock(newStock: number): Product {
     return new Product({
       id: this.id,
