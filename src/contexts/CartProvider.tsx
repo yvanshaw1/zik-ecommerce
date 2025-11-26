@@ -19,8 +19,10 @@ type StoredCartItem = {
 };
 
 export function CartProvider({ children }: CartProviderProps) {
+  // Integração com o contexto de produtos para controle de estoque.
   const { reserveStock, releaseStock } = useProducts();
 
+  // Estado do carrinho, restaurado do localStorage
   const [items, setItems] = useState<CartItem[]>(() => {
     if (typeof window === "undefined") return [];
 
@@ -44,6 +46,7 @@ export function CartProvider({ children }: CartProviderProps) {
     }
   });
 
+  // Persiste qualquer mudança no carrinho no localStorage
   useEffect(() => {
     const serialized: StoredCartItem[] = items.map((item) => ({
       id: item.id,
@@ -56,6 +59,7 @@ export function CartProvider({ children }: CartProviderProps) {
     localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(serialized));
   }, [items]);
 
+  // Tenta reservar o estoque antes de alterar o estado, então adiciona
   const addToCart = (product: CartItem): boolean => {
     const ok = reserveStock(product.id, 1);
     if (!ok) {
@@ -77,6 +81,7 @@ export function CartProvider({ children }: CartProviderProps) {
     return true;
   };
 
+  // Remove e devolve todo o estoque reservado.
   const removeFromCart = (productId: string) => {
     const currentItem = items.find((i) => i.id === productId);
     if (currentItem) {
@@ -86,6 +91,7 @@ export function CartProvider({ children }: CartProviderProps) {
     setItems((prevItems) => prevItems.filter((i) => i.id !== productId));
   };
 
+  // Atualiza ajustando a reserva de estoque.
   const updateQuantity = (productId: string, quantity: number) => {
     if (quantity < 1) {
       removeFromCart(productId);
@@ -99,11 +105,13 @@ export function CartProvider({ children }: CartProviderProps) {
     if (diff === 0) return;
 
     if (diff > 0) {
+      // Aumentando a quantidade → tenta reservar estoque adicional.
       const ok = reserveStock(productId, diff);
       if (!ok) {
         return;
       }
     } else {
+      // Diminuindo a quantidade → devolve a diferença ao estoque.
       releaseStock(productId, Math.abs(diff));
     }
 
@@ -120,6 +128,7 @@ export function CartProvider({ children }: CartProviderProps) {
     setItems([]);
   };
 
+  // Soma o total de todos os itens (sem considerar pagamento).
   const getTotal = () => {
     return items.reduce((acc, item) => acc + item.total, 0);
   };

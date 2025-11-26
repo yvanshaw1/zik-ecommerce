@@ -1,4 +1,3 @@
-// src/App.tsx
 import { BrowserRouter, useLocation } from "react-router-dom";
 import { AppRoutes } from "./routes";
 import "./styles/global.css";

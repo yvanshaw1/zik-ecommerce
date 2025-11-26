@@ -13,8 +13,10 @@ export function Product() {
   const { getProductById } = useProducts();
   const [quantity, setQuantity] = useState(1);
 
+  // Busca o produto atual pelo id de rota.
   const product = id ? getProductById(id) : undefined;
 
+  // Se não encontrar o produto, mostra tela simples de erro + botão de voltar.
   if (!product) {
     return (
       <>
@@ -34,10 +36,12 @@ export function Product() {
     });
   };
 
+  // Garante quantidade mínima 1.
   const decreaseQuantity = () => {
     if (quantity > 1) setQuantity(quantity - 1);
   };
 
+  // Garante que a quantidade não ultrapasse o estoque disponível.
   const increaseQuantity = () => {
     if (quantity < product.stock) setQuantity(quantity + 1);
   };

@@ -34,7 +34,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
   });
 
   // "Banco" de contas armazenado no localStorage (inclui senha em texto puro).
-  // Isso é aceitável para demo/local, mas não para produção real.
   const [accounts, setAccounts] = useState<StoredAccount[]>(() => {
     if (typeof window === "undefined") return [];
     const stored = localStorage.getItem(ACCOUNTS_STORAGE_KEY);

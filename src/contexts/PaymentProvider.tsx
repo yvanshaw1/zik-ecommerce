@@ -21,7 +21,7 @@ export function PaymentProvider({ children }: PaymentProviderProps) {
   const [selectedMethodId, setSelectedMethodId] =
     useState<PaymentMethodId | null>(null);
 
-  // Instanciamos as estratégias de pagamento uma vez e reaproveitamos.
+  // Instancio as estratégias de pagamento uma vez e reaproveito.
   const methods: PaymentMethod[] = useMemo(
     () => [new CreditCardPayment(), new PixPayment(), new BoletoPayment()],
     []
