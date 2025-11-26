@@ -8,7 +8,7 @@ export const PRODUCTS: Product[] = [
     price: 15999.0,
     category: "notebooks",
     image: "/images/products/notebooks/MacBookPro14M3.jpg",
-    stock: 15,
+    stock: 750, // Entre 50-900
   }),
   new Product({
     id: "nb-002",
@@ -17,7 +17,7 @@ export const PRODUCTS: Product[] = [
     price: 12499.0,
     category: "notebooks",
     image: "/images/products/notebooks/DellXPS15.jpg",
-    stock: 8,
+    stock: 0, // Exemplo de quantidade 0
   }),
   new Product({
     id: "nb-003",
@@ -26,7 +26,7 @@ export const PRODUCTS: Product[] = [
     price: 9899.0,
     category: "notebooks",
     image: "/images/products/notebooks/LenovoThinkPadX1Carbon.jpg",
-    stock: 0,
+    stock: 3, // Exemplo entre 1 e 5
   }),
   new Product({
     id: "nb-004",
@@ -35,7 +35,7 @@ export const PRODUCTS: Product[] = [
     price: 13999.0,
     category: "notebooks",
     image: "/images/products/notebooks/ASUSROGZephyrusG14.jpg",
-    stock: 6,
+    stock: 1200, // Exemplo de mais de 1000
   }),
   new Product({
     id: "nb-005",
@@ -44,7 +44,17 @@ export const PRODUCTS: Product[] = [
     price: 16499.0,
     category: "notebooks",
     image: "/images/products/notebooks/AcerPredatorHelios16.jpg",
-    stock: 4,
+    stock: 150, // Entre 50-900
+  }),
+  new Product({
+    id: "nb-006",
+    name: "Dell Alienware 16 Aurora",
+    description:
+      "Intel Core Ultra 9 185H, 32GB DDR5 RAM, 2TB SSD, NVIDIA GeForce RTX 4070",
+    price: 15999.0,
+    category: "notebooks",
+    image: "/images/products/notebooks/DellAlienware16Aurora.jpg",
+    stock: 450, // Entre 50-900
   }),
 
   new Product({
@@ -54,7 +64,7 @@ export const PRODUCTS: Product[] = [
     price: 24999.0,
     category: "computadores-gamer",
     image: "/images/products/pc-gamer/AlienwareAuroraR15.jpg",
-    stock: 0,
+    stock: 0, // Exemplo de quantidade 0
   }),
   new Product({
     id: "pc-002",
@@ -63,7 +73,7 @@ export const PRODUCTS: Product[] = [
     price: 14999.0,
     category: "computadores-gamer",
     image: "/images/products/pc-gamer/Corsair Vengeance i7400.jpg",
-    stock: 7,
+    stock: 4, // Exemplo entre 1 e 5
   }),
   new Product({
     id: "pc-003",
@@ -72,7 +82,7 @@ export const PRODUCTS: Product[] = [
     price: 18999.0,
     category: "computadores-gamer",
     image: "/images/products/pc-gamer/NZXT Player Three Prime.jpg",
-    stock: 5,
+    stock: 1500, // Exemplo de mais de 1000
   }),
   new Product({
     id: "pc-004",
@@ -81,7 +91,7 @@ export const PRODUCTS: Product[] = [
     price: 13499.0,
     category: "computadores-gamer",
     image: "/images/products/pc-gamer/MSI Aegis RS.jpg",
-    stock: 9,
+    stock: 600, // Entre 50-900
   }),
   new Product({
     id: "pc-005",
@@ -90,7 +100,7 @@ export const PRODUCTS: Product[] = [
     price: 26999.0,
     category: "computadores-gamer",
     image: "/images/products/pc-gamer/HP OMEN 45L.jpg",
-    stock: 2,
+    stock: 50, // Entre 50-900
   }),
   new Product({
     id: "pc-006",
@@ -99,7 +109,7 @@ export const PRODUCTS: Product[] = [
     price: 19999.0,
     category: "computadores-gamer",
     image: "/images/products/pc-gamer/Lenovo Legion Tower 7i.jpg",
-    stock: 6,
+    stock: 900, // Entre 50-900
   }),
 
   new Product({
@@ -109,7 +119,7 @@ export const PRODUCTS: Product[] = [
     price: 899.0,
     category: "perifericos",
     image: "/images/products/perifericos/Logitech G Pro X Superlight.jpg",
-    stock: 25,
+    stock: 1500, // Exemplo de mais de 1000
   }),
   new Product({
     id: "per-002",
@@ -118,7 +128,7 @@ export const PRODUCTS: Product[] = [
     price: 1499.0,
     category: "perifericos",
     image: "/images/products/perifericos/Razer BlackWidow V4 Pro.jpg",
-    stock: 0,
+    stock: 0, // Exemplo de quantidade 0
   }),
   new Product({
     id: "per-003",
@@ -127,7 +137,7 @@ export const PRODUCTS: Product[] = [
     price: 1299.0,
     category: "perifericos",
     image: "/images/products/perifericos/HyperX Cloud Alpha Wireless.jpg",
-    stock: 14,
+    stock: 2, // Exemplo entre 1 e 5
   }),
   new Product({
     id: "per-004",
@@ -136,7 +146,7 @@ export const PRODUCTS: Product[] = [
     price: 2499.0,
     category: "perifericos",
     image: "/images/products/perifericos/SteelSeries Arctis Nova Pro.jpg",
-    stock: 10,
+    stock: 500, // Entre 50-900
   }),
   new Product({
     id: "per-005",
@@ -145,7 +155,7 @@ export const PRODUCTS: Product[] = [
     price: 1899.0,
     category: "perifericos",
     image: "/images/products/perifericos/Corsair K100 RGB.jpg",
-    stock: 12,
+    stock: 890, // Entre 50-900
   }),
   new Product({
     id: "per-006",
@@ -154,7 +164,7 @@ export const PRODUCTS: Product[] = [
     price: 749.0,
     category: "perifericos",
     image: "/images/products/perifericos/Logitech G502 X Plus.jpg",
-    stock: 20,
+    stock: 720, // Entre 50-900
   }),
 
   new Product({
@@ -164,7 +174,7 @@ export const PRODUCTS: Product[] = [
     price: 12999.0,
     category: "hardware",
     image: "/images/products/hardware/NVIDIA GeForce RTX 4090.jpg",
-    stock: 5,
+    stock: 350, // Entre 50-900
   }),
   new Product({
     id: "hw-002",
@@ -173,7 +183,7 @@ export const PRODUCTS: Product[] = [
     price: 3499.0,
     category: "hardware",
     image: "/images/products/hardware/AMD Ryzen 9 7950X.jpg",
-    stock: 11,
+    stock: 1200, // Exemplo de mais de 1000
   }),
   new Product({
     id: "hw-003",
@@ -182,7 +192,7 @@ export const PRODUCTS: Product[] = [
     price: 1299.0,
     category: "hardware",
     image: "/images/products/hardware/Samsung 990 PRO 2TB.jpg",
-    stock: 22,
+    stock: 4, // Exemplo entre 1 e 5
   }),
   new Product({
     id: "hw-004",
@@ -191,7 +201,7 @@ export const PRODUCTS: Product[] = [
     price: 2899.0,
     category: "hardware",
     image: "/images/products/hardware/Corsair Dominator Platinum RGB 64GB.jpg",
-    stock: 15,
+    stock: 600, // Entre 50-900
   }),
   new Product({
     id: "hw-005",
@@ -200,7 +210,7 @@ export const PRODUCTS: Product[] = [
     price: 3299.0,
     category: "hardware",
     image: "/images/products/hardware/ASUS ROG Strix Z790-E.jpg",
-    stock: 8,
+    stock: 80, // Entre 50-900
   }),
   new Product({
     id: "hw-006",
@@ -209,6 +219,6 @@ export const PRODUCTS: Product[] = [
     price: 2499.0,
     category: "hardware",
     image: "/images/products/hardware/Corsair HX1500i.jpg",
-    stock: 0,
+    stock: 0, // Exemplo de quantidade 0
   }),
 ];

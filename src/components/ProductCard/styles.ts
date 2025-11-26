@@ -27,6 +27,19 @@ export const AlertBadge = styled.div`
   z-index: 1;
 `;
 
+export const DiscountBadge = styled.div`
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: #10b981; /* verde */
+  color: #ffffff;
+  border-radius: 999px;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 700;
+  z-index: 1;
+`;
+
 export const AlertIcon = styled.span`
   font-size: 18px;
   color: white;
@@ -59,6 +72,25 @@ export const ProductDescription = styled.p`
   color: #666;
   margin-bottom: 12px;
   flex-grow: 1;
+`;
+
+export const PriceRow = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 4px;
+`;
+
+export const OriginalPrice = styled.span`
+  font-size: 14px;
+  color: #9ca3af;
+  text-decoration: line-through;
+`;
+
+export const DiscountedPrice = styled.span`
+  font-size: 20px;
+  font-weight: bold;
+  color: #ff3838;
 `;
 
 export const Price = styled.span`

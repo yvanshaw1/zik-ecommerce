@@ -37,6 +37,32 @@ export class Product {
     return this._stock > 0 && this._stock < 5;
   }
 
+  get discountPercent(): number {
+    const stock = this._stock;
+
+    if (stock < 500) {
+      return 0;
+    }
+
+    if (stock >= 1000) {
+      return 20;
+    }
+
+    const factor = (stock - 500) / (1000 - 500);
+    const percent = 10 + factor * 10;
+
+    return Math.round(percent);
+  }
+
+  get hasPromotion(): boolean {
+    return this.discountPercent > 0;
+  }
+
+  get discountedPrice(): number {
+    if (!this.hasPromotion) return this.price;
+    return this.price * (1 - this.discountPercent / 100);
+  }
+
   withUpdatedStock(newStock: number): Product {
     return new Product({
       id: this.id,

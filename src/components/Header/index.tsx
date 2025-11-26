@@ -16,10 +16,17 @@ export function Header() {
     logout();
     toast.success("Logged out successfully");
     navigate("/");
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  const handleLogoClick = () => {
+    navigate("/");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <S.Container>
-      <S.Logo onClick={() => navigate("/")}>ZiK!</S.Logo>
+      <S.Logo onClick={handleLogoClick}>ZiK!</S.Logo>
       <S.Nav>
         {/* Cart button - always visible */}
         <S.CartButton onClick={() => navigate("/cart")}>

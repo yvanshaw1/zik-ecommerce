@@ -25,4 +25,16 @@ export const CATEGORIES: Category[] = [
     image: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=500",
     emoji: "🔧",
   }),
+  new Category({
+    id: "low-stock",
+    name: "Few Units Left",
+    image: "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=500", // pode trocar depois
+    emoji: "⚠️",
+  }),
+  new Category({
+    id: "promotions",
+    name: "Promotions",
+    image: "https://images.unsplash.com/photo-1582439328712-42b4a9503c09?w=500", // placeholder, troca se quiser
+    emoji: "🔥",
+  }),
 ];
