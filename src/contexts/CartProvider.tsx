@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import type { ReactNode } from "react";
 import { CartContext, type CartContextType } from "./CartContext";
 import { CartItem } from "../models/CartItem";
+import { useProducts } from "../hooks/useProducts";
 
 interface CartProviderProps {
   children: ReactNode;
@@ -18,6 +19,8 @@ type StoredCartItem = {
 };
 
 export function CartProvider({ children }: CartProviderProps) {
+  const { reserveStock, releaseStock } = useProducts();
+
   const [items, setItems] = useState<CartItem[]>(() => {
     if (typeof window === "undefined") return [];
 
@@ -53,7 +56,12 @@ export function CartProvider({ children }: CartProviderProps) {
     localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(serialized));
   }, [items]);
 
-  const addToCart = (product: CartItem) => {
+  const addToCart = (product: CartItem): boolean => {
+    const ok = reserveStock(product.id, 1);
+    if (!ok) {
+      return false;
+    }
+
     setItems((prevItems) => {
       const existingItem = prevItems.find((item) => item.id === product.id);
 
@@ -65,10 +73,18 @@ export function CartProvider({ children }: CartProviderProps) {
 
       return [...prevItems, product.withQuantity(1)];
     });
+
+    return true;
   };
 
   const removeFromCart = (productId: string) => {
-    setItems((prevItems) => prevItems.filter((item) => item.id !== productId));
+    setItems((prevItems) => {
+      const item = prevItems.find((i) => i.id === productId);
+      if (item) {
+        releaseStock(productId, item.quantity);
+      }
+      return prevItems.filter((i) => i.id !== productId);
+    });
   };
 
   const updateQuantity = (productId: string, quantity: number) => {
@@ -77,15 +93,36 @@ export function CartProvider({ children }: CartProviderProps) {
       return;
     }
 
-    setItems((prevItems) =>
-      prevItems.map((item) =>
-        item.id === productId ? item.withQuantity(quantity) : item
-      )
-    );
+    setItems((prevItems) => {
+      const item = prevItems.find((i) => i.id === productId);
+      if (!item) return prevItems;
+
+      const diff = quantity - item.quantity;
+
+      if (diff === 0) return prevItems;
+
+      if (diff > 0) {
+        const ok = reserveStock(productId, diff);
+        if (!ok) {
+          return prevItems;
+        }
+      } else {
+        releaseStock(productId, Math.abs(diff));
+      }
+
+      return prevItems.map((i) =>
+        i.id === productId ? i.withQuantity(quantity) : i
+      );
+    });
   };
 
   const clearCart = () => {
-    setItems([]);
+    setItems((prevItems) => {
+      prevItems.forEach((item) => {
+        releaseStock(item.id, item.quantity);
+      });
+      return [];
+    });
   };
 
   const getTotal = () => {

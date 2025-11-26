@@ -3,12 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { useCart } from "../../hooks/useCart";
 import { useAuth } from "../../hooks/useAuth";
+import { useProducts } from "../../hooks/useProducts";
 import { LoginRequiredModal } from "../../components/LoginRequiredModal";
 import * as S from "./styles";
 
 export function Cart() {
   const navigate = useNavigate();
   const { user } = useAuth();
+  const { products } = useProducts();
 
   const { items, removeFromCart, updateQuantity, clearCart, getTotal } =
     useCart();
@@ -45,16 +47,19 @@ export function Cart() {
   };
 
   const handleCheckout = () => {
-    // If user is not logged in, open modal instead of completing purchase
     if (!user) {
       setIsLoginModalOpen(true);
       return;
     }
 
-    // Logged-in flow
     toast.success("Purchase completed successfully!");
     clearCart();
     navigate("/");
+  };
+
+  const getProductStock = (productId: string) => {
+    const product = products.find((p) => p.id === productId);
+    return product ? product.stock : 0;
   };
 
   if (items.length === 0) {
@@ -83,41 +88,53 @@ export function Cart() {
 
         <S.Content>
           <S.ItemsList>
-            {items.map((item) => (
-              <S.CartItem key={item.id}>
-                <S.ItemImage src={item.image} alt={item.name} />
-                <S.ItemInfo>
-                  <S.ItemName>{item.name}</S.ItemName>
-                  <S.ItemPrice>R$ {item.price.toFixed(2)}</S.ItemPrice>
-                </S.ItemInfo>
+            {items.map((item) => {
+              const stock = getProductStock(item.id);
+              const isDecreaseDisabled = item.quantity === 1;
+              const isIncreaseDisabled = stock === 0 || item.quantity >= stock;
 
-                <S.QuantityControl>
-                  <S.QuantityButton
-                    onClick={() =>
-                      handleUpdateQuantity(item.id, item.quantity - 1)
-                    }
-                  >
-                    -
-                  </S.QuantityButton>
-                  <S.Quantity>{item.quantity}</S.Quantity>
-                  <S.QuantityButton
-                    onClick={() =>
-                      handleUpdateQuantity(item.id, item.quantity + 1)
-                    }
-                  >
-                    +
-                  </S.QuantityButton>
-                </S.QuantityControl>
+              return (
+                <S.CartItem key={item.id}>
+                  <S.ItemImage src={item.image} alt={item.name} />
+                  <S.ItemInfo>
+                    <S.ItemName>{item.name}</S.ItemName>
+                    <S.ItemPrice>R$ {item.price.toFixed(2)}</S.ItemPrice>
+                  </S.ItemInfo>
 
-                <S.ItemTotal>
-                  R$ {(item.price * item.quantity).toFixed(2)}
-                </S.ItemTotal>
+                  <S.QuantityControl>
+                    <S.QuantityButton
+                      disabled={isDecreaseDisabled}
+                      onClick={() => {
+                        if (isDecreaseDisabled) return;
+                        handleUpdateQuantity(item.id, item.quantity - 1);
+                      }}
+                    >
+                      -
+                    </S.QuantityButton>
 
-                <S.RemoveButton onClick={() => handleRemoveItem(item.id)}>
-                  ✕
-                </S.RemoveButton>
-              </S.CartItem>
-            ))}
+                    <S.Quantity>{item.quantity}</S.Quantity>
+
+                    <S.QuantityButton
+                      disabled={isIncreaseDisabled}
+                      onClick={() => {
+                        if (isIncreaseDisabled) return;
+                        handleUpdateQuantity(item.id, item.quantity + 1);
+                      }}
+                    >
+                      +
+                    </S.QuantityButton>
+                  </S.QuantityControl>
+
+                  <S.ItemTotal>
+                    R$ {(item.price * item.quantity).toFixed(2)}
+                  </S.ItemTotal>
+
+                  <S.RemoveButton onClick={() => handleRemoveItem(item.id)}>
+                    ✕
+                  </S.RemoveButton>
+                </S.CartItem>
+              );
+            })}
           </S.ItemsList>
 
           <S.Summary>

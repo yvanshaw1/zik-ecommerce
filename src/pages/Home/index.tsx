@@ -1,12 +1,13 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CATEGORIES } from "../../constants/categories";
-import { PRODUCTS } from "../../constants/products";
 import { Product } from "../../models/Product";
+import { useProducts } from "../../hooks/useProducts";
 import * as S from "./styles";
 
 export function Home() {
   const navigate = useNavigate();
+  const { products } = useProducts();
 
   const handleCategoryClick = (categoryId: string) => {
     navigate(`/category/${categoryId}`);
@@ -15,20 +16,18 @@ export function Home() {
   // Produtos destaque: em promoção OU com poucas unidades
   const highlightProducts = useMemo(
     () =>
-      PRODUCTS.filter(
+      products.filter(
         (product) =>
           product instanceof Product &&
           (product.hasPromotion || product.isLowStock)
       ),
-    []
+    [products]
   );
 
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  // ref para o container do carrossel
   const carouselRef = useRef<HTMLDivElement | null>(null);
 
-  // Auto-slide a cada 5 segundos
+  // Auto-slide
   useEffect(() => {
     if (highlightProducts.length === 0) return;
 
@@ -41,14 +40,13 @@ export function Home() {
     return () => clearInterval(intervalId);
   }, [highlightProducts.length]);
 
-  // Sempre que o currentIndex mudar, centraliza o item ativo
+  // Centraliza item ativo
   useEffect(() => {
     const container = carouselRef.current;
     if (!container) return;
 
     const children = container.children;
     const activeChild = children[currentIndex] as HTMLElement | undefined;
-
     if (!activeChild) return;
 
     const containerRect = container.getBoundingClientRect();
@@ -114,13 +112,13 @@ export function Home() {
                     {product.hasPromotion ? (
                       <S.HighlightPriceRow>
                         <S.HighlightDiscountedPrice>
-                          R${" "}
+                          R{"$ "}
                           {product.discountedPrice.toLocaleString("pt-BR", {
                             minimumFractionDigits: 2,
                           })}
                         </S.HighlightDiscountedPrice>
                         <S.HighlightOriginalPrice>
-                          R${" "}
+                          R{"$ "}
                           {product.price.toLocaleString("pt-BR", {
                             minimumFractionDigits: 2,
                           })}
@@ -128,7 +126,7 @@ export function Home() {
                       </S.HighlightPriceRow>
                     ) : (
                       <S.HighlightPrice>
-                        R${" "}
+                        R{"$ "}
                         {product.price.toLocaleString("pt-BR", {
                           minimumFractionDigits: 2,
                         })}
@@ -158,7 +156,7 @@ export function Home() {
         </S.CarouselWrapper>
       )}
 
-      {/* CATEGORIAS (como já estavam) */}
+      {/* CATEGORIAS */}
       <S.Title>Choose a category</S.Title>
       <S.CategoriesGrid>
         {CATEGORIES.map((cat) => (

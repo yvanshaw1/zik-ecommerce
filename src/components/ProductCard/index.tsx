@@ -38,7 +38,13 @@ export function ProductCard({ product }: ProductCardProps) {
       quantity: 1,
     });
 
-    addToCart(cartItem);
+    const ok = addToCart(cartItem);
+
+    if (ok === false) {
+      toast.error("Not enough stock available for this product.");
+      return;
+    }
+
     toast.success("Product added to cart!");
   };
 

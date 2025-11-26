@@ -135,6 +135,13 @@ export const QuantityButton = styled.button`
   &:hover {
     background: #f5f5f5;
   }
+
+  &:disabled {
+    background: #f0f0f0;
+    color: #999;
+    border-color: #e0e0e;
+    cursor: not-allowed;
+  }
 `;
 
 export const Quantity = styled.span`

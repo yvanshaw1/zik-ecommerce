@@ -2,13 +2,14 @@ import { useEffect } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import { Header } from "../../components/Header";
 import { ProductCard } from "../../components/ProductCard";
-import { PRODUCTS } from "../../constants/products";
 import { Product } from "../../models/Product";
+import { useProducts } from "../../hooks/useProducts"; // <-- NOVO
 import * as S from "./styles";
 
 export function Category() {
   const { id } = useParams<{ id: string }>();
   const location = useLocation();
+  const { products } = useProducts(); // <-- produtos vivos
 
   const highlightProductId = (
     location.state as { highlightProductId?: string } | null
@@ -20,12 +21,12 @@ export function Category() {
 
   const filteredProducts =
     id === "low-stock"
-      ? PRODUCTS.filter((product) => product.stock > 0 && product.stock <= 10)
+      ? products.filter((product) => product.stock > 0 && product.stock <= 10)
       : id === "promotions"
-      ? PRODUCTS.filter(
+      ? products.filter(
           (product) => product instanceof Product && product.hasPromotion
         )
-      : PRODUCTS.filter((product) => product.category === id);
+      : products.filter((product) => product.category === id);
 
   useEffect(() => {
     if (!highlightProductId) return;

@@ -1,18 +1,19 @@
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Header } from "../../components/Header";
-import { PRODUCTS } from "../../constants/products";
 import { useCart } from "../../hooks/useCart";
 import { CartItem } from "../../models/CartItem";
+import { useProducts } from "../../hooks/useProducts";
 import * as S from "./styles";
 
 export function Product() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { addToCart } = useCart();
+  const { getProductById } = useProducts();
   const [quantity, setQuantity] = useState(1);
 
-  const product = PRODUCTS.find((p) => p.id === id);
+  const product = id ? getProductById(id) : undefined;
 
   if (!product) {
     return (
@@ -26,7 +27,7 @@ export function Product() {
     );
   }
 
-  const formatarPreco = (price: number) => {
+  const formatPrice = (price: number) => {
     return price.toLocaleString("pt-BR", {
       style: "currency",
       currency: "BRL",
@@ -50,7 +51,12 @@ export function Product() {
       quantity,
     });
 
-    addToCart(cartItem);
+    const ok = addToCart(cartItem);
+    if (ok === false) {
+      alert("Not enough stock available for this product.");
+      return;
+    }
+
     alert(`${quantity}x ${product.name} Added to cart!`);
   };
 
@@ -67,7 +73,7 @@ export function Product() {
 
           <S.InfoSection>
             <S.ProductName>{product.name}</S.ProductName>
-            <S.ProductPrice>{formatarPreco(product.price)}</S.ProductPrice>
+            <S.ProductPrice>{formatPrice(product.price)}</S.ProductPrice>
 
             <S.StockInfo>
               {product.stock > 0

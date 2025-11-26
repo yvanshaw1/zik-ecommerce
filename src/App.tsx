@@ -1,12 +1,13 @@
 // src/App.tsx
 import { BrowserRouter, useLocation } from "react-router-dom";
-import { CartProvider } from "./contexts/CartProvider";
 import { AppRoutes } from "./routes";
-import { Popup } from "./components/Popup";
 import "./styles/global.css";
-import { AuthProvider } from "./contexts/AuthProvider";
 import { Header } from "./components/Header";
 import { ScrollToTop } from "./components/ScrollToTop";
+import { Popup } from "./components/Popup";
+import { AuthProvider } from "./contexts/AuthProvider";
+import { CartProvider } from "./contexts/CartProvider";
+import { ProductsProvider } from "./contexts/ProductsProvider";
 
 function AppContent() {
   const location = useLocation();
@@ -25,11 +26,13 @@ function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <AuthProvider>
-        <CartProvider>
-          <AppContent />
-        </CartProvider>
-      </AuthProvider>
+      <ProductsProvider>
+        <AuthProvider>
+          <CartProvider>
+            <AppContent />
+          </CartProvider>
+        </AuthProvider>
+      </ProductsProvider>
     </BrowserRouter>
   );
 }
